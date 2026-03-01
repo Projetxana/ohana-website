@@ -47,20 +47,25 @@
 
         /* Nav */
         nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             width: 100%;
-            padding: 2.5rem 5%;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 10;
+            z-index: 1000;
+            background-color: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
         .logo {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
-            letter-spacing: 3px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
@@ -347,9 +352,9 @@
 <body>
 
     <nav>
-        <div class="logo"><a href="index.html">Ohana</a></div>
+        <div class="logo"><a href="index.html">Caribbean Ownership Club™</a></div>
         <div class="nav-links">
-            <a href="comment-ca-fonctionne.html">Le Modèle</a>
+            <a href="le-cercle.html">Le Cercle</a>
             <a href="modeles.html">Modèles</a>
             <a href="gouvernance.html">Gouvernance</a>
             <a href="budget.html">Budget</a>
@@ -357,7 +362,6 @@
             <a href="souscription.html">Souscription</a>
             <a href="cadre-programme.html">Cadre</a>
             <a href="faq.html">FAQ</a>
-            <a href="le-cercle.html">Le Cercle</a>
             <a href="base-martinique.html">La Base</a>
             <a href="index.html#contact">Contact</a>
         </div>
