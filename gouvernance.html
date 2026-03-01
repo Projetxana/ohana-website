@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gouvernance & Transparence - Ohana Caribbean Ownership Club™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #2A2A2A;
+            --text-muted: #666666;
+            --accent: #B2967D;
+            --bg-secondary: #F4F3EF;
+            --white: #FFFFFF;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* Nav */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.70rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background-color: #9a7f66;
+        }
+
+        /* Hero */
+        .page-header {
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1577484606248-be241d7d08ee?auto=format&fit=crop&q=80&w=2000') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .header-tag {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Layout Structure */
+        .section-base {
+            padding: 100px 10%;
+        }
+
+        .section-white {
+            background-color: var(--white);
+        }
+
+        .section-gray {
+            background-color: var(--bg-secondary);
+        }
+
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .container-wide {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Typography System */
+        .title-h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        .title-h3 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .subtitle-italic {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .text-lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .text-bold {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .text-accent-quote {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--accent);
+            font-style: italic;
+            display: block;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        /* Highlight List Box */
+        .highlight-box {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            margin: 40px auto;
+            background-color: var(--bg-secondary);
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .highlight-box-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .inline-tags {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            padding: 50px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.015);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.03);
+        }
+
+        .section-gray .info-card {
+            background-color: var(--white);
+        }
+
+        .section-white .info-card {
+            background-color: var(--bg-secondary);
+            box-shadow: none;
+        }
+
+        /* Lists */
+        .structured-list {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .structured-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 14px;
+            color: var(--text-main);
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .structured-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .card-conclusion {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        /* Minimal Block */
+        .minimal-block {
+            text-align: center;
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 40px;
+            border-top: 1px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
+        }
+
+        .minimal-block p {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background-color: var(--bg-color);
+            padding: 120px 10%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            line-height: 1.2;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            font-weight: 300;
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background-color: var(--white);
+            font-size: 0.8rem;
+            color: #999999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media(max-width: 900px) {
+            .page-header h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                margin-top: 40px;
+            }
+
+            .section-base {
+                padding: 80px 5%;
+            }
+
+            .inline-tags {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .info-card {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Ohana</a></div>
+        <div class="nav-links">
+            <a href="comment-ca-fonctionne.html">Le Modèle</a>
+            <a href="modeles.html">Modèles</a>
+            <a href="gouvernance.html">Gouvernance</a>
+            <a href="budget.html">Budget</a>
+            <a href="sailing-academy.html">Academy</a>
+            <a href="souscription.html">Souscription</a>
+            <a href="cadre-programme.html">Cadre</a>
+            <a href="faq.html">FAQ</a>
+            <a href="le-cercle.html">Le Cercle</a>
+            <a href="base-martinique.html">La Base</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-tag">Cadre Opérationnel</div>
+        <h1>Gouvernance & Transparence</h1>
+        <p>Une structure conçue pour durer</p>
+    </header>
+
+    <!-- Intro -->
+    <section class="section-base section-white">
+        <div class="container-narrow">
+            <p class="text-lead text-bold" style="font-size: 1.3rem;">Ohana Caribbean Ownership Club™ repose sur une
+                gouvernance claire et documentée.</p>
+            <p class="text-lead">La simplicité d’usage repose sur une structure solide en arrière-plan.</p>
+
+            <div class="highlight-box">
+                <div class="highlight-box-title">Chaque yacht est structuré pour protéger :</div>
+                <div class="inline-tags">
+                    <span>Les copropriétaires</span>
+                    <span>L’actif</span>
+                    <span>La stabilité du cercle</span>
+                    <span>La valeur à long terme</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Structure Grid -->
+    <section class="section-base section-gray">
+        <div class="container-wide">
+
+            <div class="grid-2" style="margin-top: 0;">
+
+                <div class="info-card">
+                    <h3 class="title-h3">Une société dédiée par yacht</h3>
+                    <p class="text-lead">Chaque catamaran est détenu par une société spécifique.</p>
+                    <p class="text-lead">Cette société :</p>
+                    <ul class="structured-list">
+                        <li>Détient exclusivement le yacht</li>
+                        <li>Dispose de son propre compte bancaire</li>
+                        <li>Tient une comptabilité dédiée</li>
+                        <li>Encadre les décisions collectives</li>
+                    </ul>
+                    <p class="text-lead">Les copropriétaires deviennent actionnaires de cette structure.</p>
+                    <div class="card-conclusion">
+                        <span
+                            style="display: block; color: var(--accent); font-family: var(--font-heading); font-size: 1.4rem; font-style: italic; margin-bottom: 5px;">Aucun
+                            mélange d’actifs.</span>
+                        <span
+                            style="display: block; color: var(--accent); font-family: var(--font-heading); font-size: 1.4rem; font-style: italic;">Aucune
+                            confusion financière.</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="title-h3">Un budget annuel clair</h3>
+                    <p class="text-lead">Chaque année, un budget prévisionnel est présenté, détaillé et dont les
+                        contributions sont définies.</p>
+                    <p class="text-lead">Le budget inclut notamment :</p>
+                    <ul class="structured-list">
+                        <li>Maintenance préventive & Entretien courant</li>
+                        <li>Assurance & Place de marina</li>
+                        <li>Gestion administrative</li>
+                        <li>Fonds de réserve</li>
+                    </ul>
+                    <p class="text-lead">Les copropriétaires valident ce budget.</p>
+
+                    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
+                        <p class="text-bold" style="margin-bottom: 10px; font-size: 1.1rem; color: var(--text-main);">Un
+                            fonds de réserve structuré</p>
+                        <p class="text-lead" style="font-size: 1rem; margin-bottom: 0;">Il est constitué pour anticiper
+                            les imprévus techniques, les remplacements d’équipements et les évolutions nécessaires.
+                            Cette approche évite les appels de fonds imprévus et protège la stabilité financière du
+                            cercle.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparency & Decisions -->
+    <section class="section-base section-white">
+        <div class="container-wide">
+
+            <div class="grid-3" style="margin-top: 0;">
+
+                <div class="info-card">
+                    <h3 class="title-h3">Transparence financière</h3>
+                    <p class="text-lead" style="font-size: 1.05rem;">La gestion repose sur une comptabilité dédiée, un
+                        reporting régulier, un suivi des dépenses et l'archivage des factures.</p>
+                    <p class="text-lead" style="font-size: 1.05rem;">Les flux financiers sont traçables.</p>
+                    <div class="card-conclusion text-accent-quote" style="margin-top: 20px; font-size: 1.3rem;">La
+                        transparence est un principe fondateur du programme.</div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="title-h3">Décisions collectives</h3>
+                    <p class="text-lead" style="font-size: 1.05rem;">Certaines décisions relèvent du collectif. Selon
+                        leur nature, elles peuvent nécessiter une majorité simple ou qualifiée.</p>
+                    <p class="text-lead" style="font-size: 1.05rem;">Les règles sont définies dans les documents
+                        constitutifs du cercle.</p>
+                    <div class="card-conclusion text-bold" style="margin-top: 20px;">Cette organisation garantit
+                        équilibre et équité.</div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="title-h3">Responsabilité & Sécurité</h3>
+                    <p class="text-lead" style="font-size: 1.05rem;">Le copropriétaire ayant réservé la semaine est
+                        désigné skipper responsable.</p>
+                    <p class="text-lead" style="font-size: 1.05rem;">Les responsabilités sont encadrées pour éviter
+                        toute ambiguïté.</p>
+                    <div class="card-conclusion text-bold" style="margin-top: 20px;">Les standards d’assurance et de
+                        sécurité sont respectés.</div>
+                </div>
+
+            </div>
+
+            <!-- Cession & Transmission -->
+            <div class="minimal-block">
+                <h3 class="title-h3" style="border: none; margin-bottom: 15px; padding: 0;">Sélection & transmission
+                </h3>
+                <p class="text-lead" style="text-align: left; margin-bottom: 15px;">Pour préserver la cohérence du
+                    cercle :</p>
+                <ul class="structured-list" style="display: inline-block; margin-top: 0;">
+                    <li>Toute cession de part suit un processus structuré</li>
+                    <li>Les membres existants disposent d’un droit de priorité</li>
+                    <li>Le nouveau membre est validé</li>
+                </ul>
+                <p class="text-bold" style="margin-top: 20px; text-align: center;">Cette démarche protège la dynamique
+                    collective.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Integration & Serenity -->
+    <section class="section-base section-gray">
+        <div class="container-narrow">
+            <h2 class="title-h2">Une gestion intégrée</h2>
+
+            <p class="text-lead" style="text-align: center; margin-bottom: 25px;">Ohana Caribbean Ownership Club™ assure
+                :</p>
+            <div class="inline-tags" style="margin-bottom: 40px; gap: 20px;">
+                <span
+                    style="background: var(--white); padding: 8px 16px; border: 1px solid rgba(0,0,0,0.05); border-radius: 4px;">Supervision
+                    technique</span>
+                <span
+                    style="background: var(--white); padding: 8px 16px; border: 1px solid rgba(0,0,0,0.05); border-radius: 4px;">Coordination
+                    marina</span>
+                <span
+                    style="background: var(--white); padding: 8px 16px; border: 1px solid rgba(0,0,0,0.05); border-radius: 4px;">Maintenance
+                    planifiée</span>
+                <span
+                    style="background: var(--white); padding: 8px 16px; border: 1px solid rgba(0,0,0,0.05); border-radius: 4px;">Organisation
+                    logistique</span>
+                <span
+                    style="background: var(--white); padding: 8px 16px; border: 1px solid rgba(0,0,0,0.05); border-radius: 4px;">Suivi
+                    administratif</span>
+            </div>
+
+            <p class="text-lead text-bold">Le rôle du programme est de simplifier la vie des copropriétaires tout en
+                maintenant des standards élevés.</p>
+
+            <br><br>
+
+            <h2 class="subtitle-italic"
+                style="font-size: 2.2rem; color: var(--text-main); font-family: var(--font-heading); font-style: normal; margin-bottom: 20px;">
+                Un modèle pensé pour la sérénité</h2>
+            <p class="text-lead">La gouvernance n’est pas un détail administratif.</p>
+            <p class="text-lead">Elle est le socle invisible qui permet : <br><strong
+                    style="font-weight: 500; color: var(--text-main);">Liberté — Sécurité — Fluidité —
+                    Pérennité</strong></p>
+            <span class="text-accent-quote">Chaque élément est structuré pour éviter les frictions et préserver
+                l’expérience propriétaire.</span>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="contact" class="final-cta">
+        <h2>Vous souhaitez approfondir les aspects de gouvernance ?</h2>
+        <p>Un entretien stratégique permet de présenter en détail la structure juridique, le fonctionnement budgétaire
+            et les mécanismes de protection.</p>
+        <p class="text-accent-quote" style="margin: 20px 0 40px 0;">Sans engagement immédiat.</p>
+        <a href="index.html#contact" class="btn btn-accent">Planifier un entretien</a>
+    </section>
+
+    <footer>
+        &copy; 2026 Ohana Caribbean Ownership Club™. Tous droits réservés.
+    </footer>
+
+</body>
+
+</html>

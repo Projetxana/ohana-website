@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base Martinique - Ohana Caribbean Ownership Club™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #2A2A2A;
+            --text-muted: #666666;
+            --accent: #B2967D;
+            --bg-secondary: #F4F3EF;
+            --white: #FFFFFF;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* Nav */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.70rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background-color: #9a7f66;
+        }
+
+        /* Full Width Hero */
+        .page-header {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('le-marin-base.jpg') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .header-tag {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .page-header h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            max-width: 600px;
+            text-transform: uppercase;
+        }
+
+        /* Intro Hub */
+        .intro-section {
+            background-color: var(--bg-color);
+            padding: 100px 10%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .highlight-words {
+            margin-top: 40px;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-style: italic;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        /* Split Section with Map/Abstract */
+        .split-section {
+            display: flex;
+            background-color: var(--white);
+            min-height: 600px;
+        }
+
+        .split-image {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1000') center/cover;
+        }
+
+        .split-content {
+            flex: 1;
+            padding: 100px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .split-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--text-main);
+        }
+
+        .split-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .destinations-list {
+            list-style: none;
+            margin: 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .destinations-list li {
+            background-color: var(--bg-secondary);
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            font-weight: 500;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Operational Grid */
+        .ops-section {
+            background-color: var(--bg-secondary);
+            padding: 120px 10%;
+        }
+
+        .ops-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .ops-card {
+            background-color: var(--white);
+            padding: 60px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.4s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+        }
+
+        .ops-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+        }
+
+        .ops-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .ops-card p {
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .ops-list {
+            list-style: none;
+        }
+
+        .ops-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        .ops-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .ops-highlight {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-weight: 500;
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        /* Dark Immersive Vision */
+        .vision-dark {
+            background-color: var(--text-main);
+            color: var(--white);
+            padding: 120px 10%;
+            text-align: center;
+        }
+
+        .vision-dark h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--white);
+        }
+
+        .vision-dark p {
+            font-size: 1.2rem;
+            color: #CCCCCC;
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .vision-dark p.anchor-point {
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-family: var(--font-heading);
+            font-style: italic;
+            margin: 40px 0;
+        }
+
+        /* Final Invitation */
+        .final-cta {
+            background-color: var(--bg-color);
+            padding: 120px 10%;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            font-weight: 300;
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background-color: var(--white);
+            font-size: 0.8rem;
+            color: #999999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media(max-width: 900px) {
+            .page-header h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .split-section {
+                flex-direction: column;
+            }
+
+            .split-image {
+                min-height: 400px;
+            }
+
+            .ops-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-words {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* === Carte stratégique (premium émotionnel) === */
+        .map-card {
+            margin: 40px auto 10px;
+            max-width: 1100px;
+            padding: 22px 22px 16px;
+            border-radius: 22px;
+            background: rgba(12, 18, 32, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(10px);
+        }
+
+        .map-card__header h2 {
+            margin: 0 0 6px;
+            font-size: 20px;
+            letter-spacing: .2px;
+        }
+
+        .map-card__header p {
+            margin: 0 0 14px;
+            opacity: .78;
+            line-height: 1.35;
+        }
+
+        .map-frame {
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .caribbean-map {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .caribbean-map .ocean {
+            fill: rgba(12, 18, 32, 0.55);
+        }
+
+        .caribbean-map .rings circle {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.14);
+            stroke-width: 1;
+            stroke-dasharray: 4 8;
+        }
+
+        .caribbean-map .island {
+            fill: rgba(236, 224, 200, 0.92);
+            stroke: rgba(255, 255, 255, 0.10);
+            stroke-width: 1;
+        }
+
+        .caribbean-map .routes .route {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.45);
+            stroke-width: 1.2;
+            stroke-linecap: round;
+            stroke-dasharray: 2 8;
+            opacity: .8;
+        }
+
+        .caribbean-map .hubDot {
+            fill: rgba(210, 170, 88, 0.98);
+        }
+
+        .caribbean-map .hubHalo {
+            fill: none;
+            stroke: rgba(210, 170, 88, 0.55);
+            stroke-width: 2;
+        }
+
+        .caribbean-map .labels .title {
+            fill: rgba(255, 255, 255, 0.92);
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .caribbean-map .labels .subtitle {
+            fill: rgba(255, 255, 255, 0.68);
+            font-size: 14px;
+        }
+
+        .caribbean-map .labels .place {
+            fill: rgba(255, 255, 255, 0.78);
+            font-size: 13px;
+        }
+
+        .caribbean-map .labels .placeEm {
+            fill: rgba(210, 170, 88, 0.95);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .caribbean-map .labels .tagBg {
+            fill: rgba(255, 255, 255, 0.06);
+            stroke: rgba(255, 255, 255, 0.10);
+            stroke-width: 1;
+        }
+
+        .caribbean-map .labels .tagTitle {
+            fill: rgba(255, 255, 255, 0.92);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .caribbean-map .labels .tagSub {
+            fill: rgba(255, 255, 255, 0.70);
+            font-size: 12px;
+        }
+
+        .map-card__footer {
+            margin-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .map-bullets {
+            display: flex;
+            gap: 14px;
+            opacity: .85;
+            font-size: 12px;
+        }
+
+        .map-note {
+            opacity: .6;
+            font-size: 12px;
+        }
+
+        /* --- Micro-animations premium (discrètes) --- */
+        @media (prefers-reduced-motion: reduce) {
+
+            .caribbean-map .routes .route,
+            .caribbean-map .hubHalo,
+            .caribbean-map .hubDot,
+            .caribbean-map .ocean {
+                animation: none !important;
+            }
+        }
+
+        /* Routes: effet "tracé" subtil */
+        .caribbean-map .routes .route {
+            stroke-dasharray: 2 10;
+            animation: routeDraw 6.8s ease-in-out infinite;
+            animation-delay: var(--d, 0s);
+        }
+
+        /* Décale chaque route pour un rendu vivant */
+        .caribbean-map .routes .route:nth-child(1) {
+            --d: 0.0s;
+        }
+
+        .caribbean-map .routes .route:nth-child(2) {
+            --d: 0.7s;
+        }
+
+        .caribbean-map .routes .route:nth-child(3) {
+            --d: 1.3s;
+        }
+
+        .caribbean-map .routes .route:nth-child(4) {
+            --d: 1.9s;
+        }
+
+        .caribbean-map .routes .route:nth-child(5) {
+            --d: 2.5s;
+        }
+
+        @keyframes routeDraw {
+            0% {
+                stroke-dashoffset: 0;
+                opacity: 0.55;
+            }
+
+            40% {
+                stroke-dashoffset: -140;
+                opacity: 0.90;
+            }
+
+            65% {
+                stroke-dashoffset: -220;
+                opacity: 0.65;
+            }
+
+            100% {
+                stroke-dashoffset: -340;
+                opacity: 0.55;
+            }
+        }
+
+        /* Hub: halo qui respire */
+        .caribbean-map .hubHalo {
+            transform-origin: 510px 300px;
+            animation: haloPulse 3.6s ease-in-out infinite;
+            opacity: 0.70;
+        }
+
+        @keyframes haloPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.55;
+            }
+
+            45% {
+                transform: scale(1.10);
+                opacity: 0.85;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0.55;
+            }
+        }
+
+        /* Hub dot: micro-brillance */
+        .caribbean-map .hubDot {
+            animation: dotGlow 3.6s ease-in-out infinite;
+        }
+
+        @keyframes dotGlow {
+            0% {
+                opacity: 0.92;
+            }
+
+            45% {
+                opacity: 1.00;
+            }
+
+            100% {
+                opacity: 0.92;
+            }
+        }
+
+        /* Fond: respiration légère */
+        .caribbean-map .ocean {
+            animation: oceanBreath 10s ease-in-out infinite;
+        }
+
+        @keyframes oceanBreath {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.92;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Ohana</a></div>
+        <div class="nav-links">
+            <a href="comment-ca-fonctionne.html">Le Modèle</a>
+            <a href="modeles.html">Modèles</a>
+            <a href="gouvernance.html">Gouvernance</a>
+            <a href="budget.html">Budget</a>
+            <a href="sailing-academy.html">Academy</a>
+            <a href="souscription.html">Souscription</a>
+            <a href="cadre-programme.html">Cadre</a>
+            <a href="faq.html">FAQ</a>
+            <a href="le-cercle.html">Le Cercle</a>
+            <a href="base-martinique.html">La Base</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-tag">Base Principale</div>
+        <h1>Le Marin, Martinique</h1>
+        <p>Un hub stratégique au cœur des Caraïbes</p>
+    </header>
+
+    <section class="intro-section">
+        <p class="intro-text">Le Marin est l’un des ports les plus structurés des Caraïbes. Il constitue la véritable
+            base opérationnelle du programme, garantissant un environnement marin de très haut niveau, nécessaire pour
+            l'entretien et la gestion de yachts de standing.</p>
+
+        <div class="highlight-words">
+            <span>Protégé.</span>
+            <span>Accessible.</span>
+            <span>Professionnel.</span>
+        </div>
+
+    </section>
+
+    <section class="map-section">
+        <div class="map-card" aria-label="Carte stratégique centrée sur la Martinique">
+            <div class="map-card__header">
+                <h2>Une position idéale pour naviguer</h2>
+                <p>Martinique comme point d’ancrage — une lecture claire et progressive des bassins des Caraïbes Sud.
+                </p>
+            </div>
+
+            <div class="map-frame" role="img"
+                aria-label="Carte stylisée des Petites Antilles centrée sur la Martinique">
+                <svg class="caribbean-map" viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <defs>
+                        <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.04" />
+                        </filter>
+                    </defs>
+
+                    <rect x="0" y="0" width="1000" height="560" rx="0" ry="0" class="ocean" />
+
+                    <!-- Navigation rings (subtle) -->
+                    <g class="rings">
+                        <circle cx="510" cy="300" r="100" />
+                        <circle cx="510" cy="300" r="180" />
+                        <circle cx="510" cy="300" r="260" />
+                    </g>
+
+                    <!-- Islands (stylized, realistic shapes) -->
+                    <g class="islands" filter="url(#softShadow)">
+                        <!-- Guadeloupe -->
+                        <path d="M 470 130 C 480 120, 495 130, 490 150 C 485 165, 470 160, 465 145 Z" class="island" />
+                        <path d="M 490 135 C 505 125, 520 135, 510 150 C 495 155, 485 145, 490 135 Z" class="island" />
+                        <circle cx="510" cy="165" r="5" class="island" />
+
+                        <!-- Dominica -->
+                        <path d="M 495 190 C 515 180, 525 200, 510 220 C 495 210, 485 195, 495 190 Z" class="island" />
+
+                        <!-- Martinique (encompassing 510,300) -->
+                        <path
+                            d="M 495 260 C 515 250, 530 270, 520 290 C 525 305, 510 315, 500 305 C 490 300, 485 285, 490 275 Z"
+                            class="island" />
+
+                        <!-- Saint Lucia -->
+                        <path d="M 515 330 C 530 325, 540 345, 520 365 C 505 355, 505 340, 515 330 Z" class="island" />
+
+                        <!-- Saint Vincent -->
+                        <path d="M 540 395 C 555 385, 565 405, 550 420 C 535 410, 535 400, 540 395 Z" class="island" />
+
+                        <!-- Grenadines & Grenada -->
+                        <circle cx="560" cy="435" r="3" class="island" />
+                        <circle cx="570" cy="450" r="3.5" class="island" />
+                        <circle cx="585" cy="465" r="4" class="island" />
+                        <circle cx="595" cy="485" r="4" class="island" />
+                        <path d="M 605 510 C 620 500, 630 520, 615 535 C 600 525, 600 515, 605 510 Z" class="island" />
+                    </g>
+
+                    <!-- Routes (thin, premium) -->
+                    <g class="routes">
+                        <path d="M510 300 Q 520 260 505 220" class="route" /> <!-- Dominica -->
+                        <path d="M505 220 Q 480 180 500 160" class="route" /> <!-- Guadeloupe -->
+                        <path d="M510 300 Q 535 320 520 340" class="route" /> <!-- Saint Lucia -->
+                        <path d="M510 300 Q 545 345 545 390" class="route" /> <!-- Saint Vincent -->
+                        <path d="M545 390 Q 570 440 605 510" class="route" /> <!-- Grenadines -> Grenada -->
+                    </g>
+
+                    <!-- Martinique hub marker -->
+                    <g class="hub">
+                        <circle cx="510" cy="300" r="14" class="hubHalo" />
+                        <circle cx="510" cy="300" r="6" class="hubDot" />
+                    </g>
+
+                    <!-- Labels -->
+                    <g class="labels">
+                        <g class="tag" filter="url(#softShadow)">
+                            <rect x="70" y="70" width="280" height="64" rx="8" class="tagBg" />
+                            <text x="95" y="98" class="tagTitle">Le Marin, Martinique</text>
+                            <text x="95" y="118" class="tagSub">Hub opérationnel des Caraïbes Sud</text>
+                        </g>
+
+                        <!-- Island labels -->
+                        <text x="395" y="145" class="place">Guadeloupe</text>
+                        <text x="535" y="210" class="place">Dominique</text>
+                        <text x="390" y="285" class="placeEm">Martinique</text>
+                        <text x="540" y="340" class="place">Sainte-Lucie</text>
+                        <text x="575" y="405" class="place">Saint-Vincent</text>
+                        <text x="635" y="525" class="place">Grenade & Grenadines</text>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="map-card__footer">
+                <div class="map-bullets" aria-label="Atouts de la base">
+                    <span>Protégé</span>
+                    <span>Accessible</span>
+                    <span>Professionnel</span>
+                </div>
+                <div class="map-note">Illustration de nos routes de navigation privilégiées.</div>
+            </div>
+        </div>
+
+        <section class="ops-section">
+            <div class="ops-grid">
+                <div class="ops-card">
+                    <h3>Une infrastructure solide</h3>
+                    <p>Le Marin offre un écosystème technique et logistique complet. Cette stabilité est absolument
+                        essentielle à une gestion rigoureuse de flotte :</p>
+                    <ul class="ops-list">
+                        <li>Marina hautement sécurisée</li>
+                        <li>Chantiers nautiques de premier plan</li>
+                        <li>Fournisseurs techniques spécialisés</li>
+                        <li>Réseau d'approvisionnement facilité</li>
+                    </ul>
+                    <div class="ops-highlight">L'environnement garantit la qualité.</div>
+                </div>
+
+                <div class="ops-card">
+                    <h3>Une base fixe, un contrôle maîtrisé</h3>
+                    <p>Le choix d’une base principale unique permet une supervision centralisée et un niveau d'exigence
+                        constant :</p>
+                    <ul class="ops-list">
+                        <li>Maintenance préventive optimisée</li>
+                        <li>Logistique navale simplifiée</li>
+                        <li>Relations durables avec les partenaires locaux</li>
+                    </ul>
+                    <p style="margin-top:20px; font-weight:300;">Le yacht n’est pas déplacé sans planification. La
+                        stabilité
+                        d'ancrage est un atout stratégique majeur.</p>
+                </div>
+
+                <div class="ops-card">
+                    <h3>Sécurité & Conditions météo</h3>
+                    <p>La sécurité prévaut toujours. La gestion du navire s'appuie sur une structure préparée à toute
+                        éventualité clinique et climatique :</p>
+                    <ul class="ops-list">
+                        <li>Infrastructures adaptées aux périodes cycloniques (trous à cyclone)</li>
+                        <li>Amarrages en zones géographiques ultra-protégées</li>
+                        <li>Protocoles météo structurés</li>
+                    </ul>
+                    <p style="margin-top:20px; font-weight:300;">En cas d’événement exceptionnel, les protocoles d’abri
+                        stricts sont immédiatement activés.</p>
+                </div>
+
+                <div class="ops-card">
+                    <h3>Une présence locale réelle</h3>
+                    <p>Ohana Caribbean est déjà historiquement implantée au Marin via sa branche d'école de voile
+                        professionnelle. Cette présence sur le terrain permet :</p>
+                    <ul class="ops-list">
+                        <li>Réactivité physique immédiate</li>
+                        <li>Connaissance intime du tissu local</li>
+                        <li>Supervision assidue des navires</li>
+                        <li>Cohérence entre formation nautique et propriété</li>
+                    </ul>
+                    <div class="ops-highlight">La base n’est pas théorique. Elle est opérationnelle.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vision-dark">
+            <h2>Liberté, structurée.</h2>
+            <p>La Martinique n’est pas une contrainte logistique.</p>
+            <p class="anchor-point">C’est un point d’ancrage pur.</p>
+            <p>Un point de départ serein et inébranlable vers l’ensemble des Caraïbes Sud.</p>
+        </section>
+
+        <section id="contact" class="final-cta">
+            <h2>Découvrez le programme depuis sa base stratégique.</h2>
+            <p>Un entretien stratégique permet d’échanger en toute confidentialité.<br><strong>Sans engagement.</strong>
+            </p>
+            <br>
+            <a href="index.html#contact" class="btn btn-accent">Planifier un entretien</a>
+        </section>
+
+        <footer>
+            &copy; 2026 Ohana Caribbean Ownership Club™. Tous droits réservés.
+        </footer>
+
+</body>
+
+</html>

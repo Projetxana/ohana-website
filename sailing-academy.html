@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sailing Academy - Ohana Caribbean Ownership Club™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #2A2A2A;
+            --text-muted: #666666;
+            --accent: #B2967D;
+            --bg-secondary: #F4F3EF;
+            --white: #FFFFFF;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* Nav */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.70rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background-color: #9a7f66;
+        }
+
+        /* Hero */
+        .page-header {
+            height: 75vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1544413660-299165566b1d?auto=format&fit=crop&q=80&w=2000') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .header-tag {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            max-width: 900px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Core Sections */
+        .section-light,
+        .section-dark,
+        .section-muted {
+            padding: 100px 10%;
+        }
+
+        .section-light {
+            background-color: var(--white);
+        }
+
+        .section-muted {
+            background-color: var(--bg-secondary);
+        }
+
+        .section-dark {
+            background-color: var(--text-main);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: inherit;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .lead-text {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .section-dark .lead-text {
+            color: #CCCCCC;
+        }
+
+        .highlight-box {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            margin: 40px 0;
+            background-color: var(--bg-secondary);
+            text-align: left;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 50px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .card-number {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        ul.clean-list {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        ul.clean-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            color: inherit;
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        ul.clean-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .section-dark ul.clean-list li {
+            color: #CCCCCC;
+        }
+
+        /* Typography accents */
+        .text-emphasis {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .text-xl {
+            font-size: 1.3rem;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background-color: var(--white);
+            padding: 120px 10%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .final-cta p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            font-weight: 300;
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background-color: var(--bg-secondary);
+            font-size: 0.8rem;
+            color: #999999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media(max-width: 900px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-light,
+            .section-dark,
+            .section-muted {
+                padding: 80px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Ohana</a></div>
+        <div class="nav-links">
+            <a href="comment-ca-fonctionne.html">Le Modèle</a>
+            <a href="modeles.html">Modèles</a>
+            <a href="gouvernance.html">Gouvernance</a>
+            <a href="budget.html">Budget</a>
+            <a href="sailing-academy.html">Academy</a>
+            <a href="souscription.html">Souscription</a>
+            <a href="cadre-programme.html">Cadre</a>
+            <a href="faq.html">FAQ</a>
+            <a href="le-cercle.html">Le Cercle</a>
+            <a href="base-martinique.html">La Base</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-tag">Validation des compétences</div>
+        <h1>Sailing Academy</h1>
+        <p>La liberté exige la maîtrise</p>
+    </header>
+
+    <!-- Intro section -->
+    <section class="section-light">
+        <div class="container-narrow">
+            <p class="lead-text text-xl" style="color: var(--text-main);">Naviguer aux Caraïbes offre une liberté
+                exceptionnelle.</p>
+            <p class="lead-text">Cette liberté repose sur une responsabilité claire.</p>
+
+            <p class="lead-text">Ohana Caribbean Ownership Club™ exige que chaque copropriétaire naviguant en autonomie
+                ait validé les compétences nécessaires.</p>
+
+            <div class="highlight-box" style="text-align: center;">
+                <p class="text-emphasis"
+                    style="margin-bottom: 20px; font-family: var(--font-heading); font-size: 1.5rem; font-style: italic;">
+                    Cette exigence protège :</p>
+                <div
+                    style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">
+                    <span>Les personnes</span>
+                    <span>Le yacht</span>
+                    <span>Le cercle</span>
+                    <span>La valeur à long terme</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skipper Responsable -->
+    <section class="section-muted">
+        <div class="container-narrow">
+            <h2 class="section-title">Le copropriétaire skipper responsable</h2>
+            <p class="lead-text">Le copropriétaire ayant réservé la semaine est désigné skipper responsable. Il est le
+                “Party in Charge” pendant sa période d’usage.</p>
+            <p class="lead-text">Pour naviguer en autonomie, il doit :</p>
+
+            <div style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--accent); margin: 30px 0;">
+                Présenter une expérience solide <br><span
+                    style="color: var(--text-muted); font-size: 1rem; font-family: var(--font-body); font-style: normal; text-transform: uppercase; letter-spacing: 2px; margin: 15px 0; display: inline-block;">ou</span><br>
+                Suivre un parcours de validation adapté
+            </div>
+
+            <p class="lead-text">Une fois validé, aucune revalidation annuelle n’est exigée.</p>
+            <p class="section-subtitle" style="margin-top: 20px;">La confiance s’installe dans la durée.</p>
+        </div>
+    </section>
+
+    <!-- Validation Paths -->
+    <section class="section-light">
+        <div class="container-narrow" style="max-width: 1000px;">
+            <h2 class="section-title" style="margin-bottom: 10px;">Validation des compétences</h2>
+            <p class="lead-text" style="text-align: center;">Deux parcours sont possibles :</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-number">1</div>
+                    <h3>Dossier nautique existant</h3>
+                    <p>Le copropriétaire peut soumettre :</p>
+                    <ul class="clean-list">
+                        <li>Certifications reconnues</li>
+                        <li>Historique de navigation</li>
+                        <li>Expérience documentée</li>
+                    </ul>
+                    <p style="margin-top: 30px; font-weight: 500; color: var(--text-main);">Une évaluation permet de
+                        confirmer l’autorisation.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">2</div>
+                    <h3>Parcours via Ohana Sailing</h3>
+                    <p>Grâce à l’expertise d’Ohana Sailing, les copropriétaires peuvent suivre :</p>
+                    <ul class="clean-list">
+                        <li>Manœuvres portuaires en catamaran</li>
+                        <li>Gestion des équipages</li>
+                        <li>Navigation côtière et hauturière</li>
+                        <li>Sécurité & gestion météo</li>
+                        <li>Protocoles spécifiques aux modèles Excess</li>
+                    </ul>
+                    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
+                        <p
+                            style="font-weight: 500; color: var(--accent); font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0;">
+                            Validation formalisée.</p>
+                        <p
+                            style="font-weight: 500; color: var(--accent); font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0;">
+                            Autorisation autonome.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exigence & Standards -->
+    <section class="section-dark">
+        <div class="container-narrow">
+            <h2 class="section-subtitle" style="color: var(--white);">Une exigence qui rassure</h2>
+            <p class="lead-text">Cette validation n’est pas une contrainte. Elle est un engagement envers :</p>
+
+            <ul class="clean-list" style="display: inline-block; text-align: left; margin-bottom: 40px;">
+                <li>La sécurité</li>
+                <li>La qualité du programme</li>
+                <li>La cohérence du cercle</li>
+            </ul>
+
+            <p class="lead-text text-emphasis" style="color: var(--white);">Elle réduit les risques et protège
+                l’expérience de tous.</p>
+
+            <hr style="border: 0; height: 1px; background: rgba(255,255,255,0.1); margin: 60px 0;">
+
+            <h2 class="section-title" style="font-size: 2.2rem; color: var(--white);">Standards & protocoles</h2>
+            <p class="lead-text">Chaque yacht fonctionne selon des standards clairs :</p>
+
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 30px 0;">
+                <span
+                    style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; letter-spacing: 1px;">Check-in
+                    structuré</span>
+                <span
+                    style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; letter-spacing: 1px;">Brief
+                    technique</span>
+                <span
+                    style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; letter-spacing: 1px;">Protocoles
+                    météo</span>
+                <span
+                    style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; letter-spacing: 1px;">Procédure
+                    d’urgence</span>
+                <span
+                    style="border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; letter-spacing: 1px;">Plan
+                    d’abri alerte</span>
+            </div>
+
+            <p class="lead-text" style="color: var(--accent); font-weight: 500; font-size: 1.3rem;">La sécurité prévaut
+                toujours sur le calendrier.</p>
+            <p class="lead-text" style="font-size: 1rem;">En cas de conditions exceptionnelles, un report peut être
+                organisé sans pénalité.</p>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="section-muted" style="text-align: center;">
+        <div class="container-narrow">
+            <h2 class="section-title" style="font-size: 2.4rem;">Une communauté responsable</h2>
+            <p class="lead-text">Ohana Caribbean Ownership Club™ rassemble des propriétaires :</p>
+            <p class="section-subtitle" style="font-size: 1.5rem; margin: 20px 0;">Passionnés — Engagés — Responsables
+            </p>
+            <p class="lead-text">La Sailing Academy contribue à créer une culture commune de navigation exigeante et
+                respectueuse.</p>
+
+            <div style="margin-top: 60px; padding-top: 60px; border-top: 1px solid rgba(0,0,0,0.05);">
+                <h3 style="font-size: 2rem; margin-bottom: 20px;">Une liberté encadrée</h3>
+                <p class="lead-text">Naviguer en autonomie est un privilège. Nous veillons à ce que ce privilège repose
+                    sur des bases solides.</p>
+                <p class="lead-text text-emphasis" style="margin-top: 30px;">L’objectif n’est pas de contrôler.<br><span
+                        style="color: var(--accent); font-family: var(--font-heading); font-size: 1.5rem; font-style: italic;">L’objectif
+                        est de préserver la liberté durablement.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="contact" class="final-cta">
+        <h2>Vous souhaitez en savoir plus sur le parcours de validation ?</h2>
+        <p>Un entretien stratégique permet d’évaluer votre niveau actuel, les étapes éventuelles et les options de
+            formation adaptées.</p>
+        <p
+            style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--accent); font-style: italic; margin-bottom: 40px;">
+            Sans engagement.</p>
+        <a href="index.html#contact" class="btn btn-accent">Planifier un entretien</a>
+    </section>
+
+    <footer>
+        &copy; 2026 Ohana Caribbean Ownership Club™. Tous droits réservés.
+    </footer>
+
+</body>
+
+</html>

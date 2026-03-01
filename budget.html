@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget & Maintenance - Ohana Caribbean Ownership Club™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #2A2A2A;
+            --text-muted: #666666;
+            --accent: #B2967D;
+            --bg-secondary: #F4F3EF;
+            --white: #FFFFFF;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* Nav */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.70rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background-color: #9a7f66;
+        }
+
+        /* Hero */
+        .page-header {
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2000') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .header-tag {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Core Layout */
+        .section-light {
+            background-color: var(--white);
+            padding: 100px 10%;
+        }
+
+        .section-muted {
+            background-color: var(--bg-secondary);
+            padding: 100px 10%;
+        }
+
+        .section-dark {
+            background-color: var(--text-main);
+            color: var(--white);
+            padding: 100px 10%;
+        }
+
+        .container-main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .container-narrow {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .lead-text {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .text-emphasis {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Intro Words */
+        .intro-words {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--accent);
+            font-style: italic;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* Grid Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            padding: 50px 40px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+        }
+
+        .info-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .clean-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .clean-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 14px;
+            color: var(--text-main);
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .clean-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .card-note {
+            margin-top: 30px;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        /* Dark Section */
+        .section-dark h2 {
+            color: var(--white);
+        }
+
+        .section-dark .lead-text {
+            color: #CCCCCC;
+        }
+
+        .section-dark .info-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        .section-dark .info-card h3 {
+            color: var(--white);
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .section-dark .info-card p {
+            color: #BBBBBB;
+        }
+
+        .section-dark .clean-list li {
+            color: var(--white);
+        }
+
+        .section-dark .clean-list li::before {
+            color: var(--accent);
+        }
+
+        /* Big Quote Box */
+        .quote-box {
+            border: 1px solid var(--accent);
+            padding: 50px;
+            text-align: center;
+            margin: 60px auto;
+            max-width: 800px;
+            background-color: var(--white);
+        }
+
+        .quote-box h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--text-main);
+        }
+
+        .quote-box p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background-color: var(--bg-secondary);
+            padding: 120px 10%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+        }
+
+        .final-cta p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 10px auto;
+            font-weight: 300;
+        }
+
+        .final-cta .sub-p {
+            color: var(--accent);
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background-color: var(--white);
+            font-size: 0.8rem;
+            color: #999999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media(max-width: 900px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .intro-words {
+                flex-direction: column;
+                gap: 10px;
+                font-size: 1.6rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-light,
+            .section-muted,
+            .section-dark {
+                padding: 80px 5%;
+            }
+
+            .quote-box {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Ohana</a></div>
+        <div class="nav-links">
+            <a href="comment-ca-fonctionne.html">Le Modèle</a>
+            <a href="modeles.html">Modèles</a>
+            <a href="gouvernance.html">Gouvernance</a>
+            <a href="budget.html">Budget</a>
+            <a href="sailing-academy.html">Academy</a>
+            <a href="souscription.html">Souscription</a>
+            <a href="cadre-programme.html">Cadre</a>
+            <a href="faq.html">FAQ</a>
+            <a href="le-cercle.html">Le Cercle</a>
+            <a href="base-martinique.html">La Base</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-tag">Transparence financière</div>
+        <h1>Budget & Maintenance</h1>
+        <p>Une vision claire des coûts</p>
+    </header>
+
+    <!-- Intro -->
+    <section class="section-light">
+        <div class="container-narrow">
+            <p class="lead-text text-emphasis" style="font-size: 1.3rem;">La propriété partagée repose sur un principe
+                simple :</p>
+            <p class="lead-text">Chaque copropriétaire contribue à la préservation et au bon fonctionnement du yacht.
+            </p>
+            <p class="lead-text">Le budget annuel est structuré, anticipé et validé collectivement.</p>
+
+            <div class="intro-words">
+                <span>Aucune zone grise.</span>
+                <span>Aucun coût caché.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contribution & Maintenance -->
+    <section class="section-muted" style="border-top: 1px solid rgba(0,0,0,0.03);">
+        <div class="container-main">
+            <h2 class="section-title">Ce que couvre la contribution annuelle</h2>
+            <p class="lead-text">La contribution annuelle permet de couvrir :</p>
+
+            <ul class="clean-list" style="max-width: 600px; margin: 30px auto; font-size: 1.05rem;">
+                <li>Maintenance préventive et inspections régulières</li>
+                <li>Entretien courant (moteurs, voiles, systèmes)</li>
+                <li>Assurance maritime</li>
+                <li>Place de marina au Marin</li>
+                <li>Gestion administrative et supervision technique</li>
+                <li>Préparation du yacht entre les séjours</li>
+                <li>Constitution et maintien du fonds de réserve</li>
+            </ul>
+
+            <p class="lead-text text-emphasis" style="margin-top: 30px;">Chaque poste est identifié dans le budget
+                prévisionnel.</p>
+
+            <div class="cards-grid">
+                <div class="info-card">
+                    <h3>Maintenance planifiée</h3>
+                    <p>Un catamaran bien entretenu conserve sa valeur. Chaque année, une période dédiée est réservée à :
+                    </p>
+                    <ul class="clean-list">
+                        <li>Carénage</li>
+                        <li>Révisions techniques</li>
+                        <li>Contrôles de sécurité</li>
+                        <li>Vérifications des équipements</li>
+                    </ul>
+                    <div class="card-note">Cette planification réduit les imprévus et protège l’actif.</div>
+                </div>
+
+                <div class="info-card">
+                    <h3>Maintenance imprévue</h3>
+                    <p>Malgré une gestion rigoureuse, l’imprévu peut survenir. C’est pourquoi :</p>
+                    <ul class="clean-list">
+                        <li>Un fonds de réserve est constitué</li>
+                        <li>Les interventions sont documentées</li>
+                        <li>Les dépenses importantes sont encadrées</li>
+                    </ul>
+                    <div class="card-note">L’objectif est d’éviter les appels de fonds soudains.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparence & Gestion -->
+    <section class="section-dark">
+        <div class="container-main">
+            <h2 class="section-title">Une gestion maîtrisée</h2>
+
+            <div class="cards-grid" style="margin-top: 40px;">
+                <div class="info-card">
+                    <h3>Transparence financière</h3>
+                    <p>Chaque yacht dispose :</p>
+                    <ul class="clean-list">
+                        <li>D’une comptabilité dédiée</li>
+                        <li>D’un compte bancaire spécifique</li>
+                        <li>D’un suivi structuré des dépenses</li>
+                    </ul>
+                    <p>Les copropriétaires ont accès aux informations financières liées à leur yacht.</p>
+                    <p class="section-subtitle" style="text-align: left; margin-top: 20px; font-size: 1.4rem;">La
+                        confiance repose sur la visibilité.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Notre rémunération</h3>
+                    <p>La gestion annuelle est conçue pour être claire, stable et raisonnable.</p>
+                    <p>Notre rémunération principale provient de la structuration du cercle.</p>
+                    <p>Les frais de gestion annuelle sont définis de manière transparente et proportionnée au service
+                        fourni.</p>
+                </div>
+            </div>
+
+            <div class="quote-box"
+                style="background: transparent; border-color: rgba(255,255,255,0.2); margin-top: 80px;">
+                <h3 style="color: var(--white);">Une approche responsable</h3>
+                <p style="color: #CCCCCC;">L’objectif n’est pas de minimiser artificiellement les coûts.</p>
+                <p style="color: var(--white); font-weight: 500; font-size: 1.25rem; margin: 25px 0;">Préserver le yacht
+                    — Stabiliser le budget — Éviter les mauvaises surprises — Maintenir la qualité</p>
+                <p
+                    style="color: var(--accent); font-family: var(--font-heading); font-size: 1.6rem; font-style: italic;">
+                    La pérennité prime sur l’approximation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="section-light">
+        <div class="container-narrow">
+            <h2 class="section-title">Estimation budgétaire</h2>
+            <p class="lead-text">Des fourchettes indicatives sont communiquées pour chaque modèle. Ces estimations
+                tiennent compte :</p>
+
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0;">
+                <span
+                    style="border: 1px solid rgba(0,0,0,0.1); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; letter-spacing: 1px;">Du
+                    modèle choisi</span>
+                <span
+                    style="border: 1px solid rgba(0,0,0,0.1); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; letter-spacing: 1px;">Du
+                    niveau d’équipement</span>
+                <span
+                    style="border: 1px solid rgba(0,0,0,0.1); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; letter-spacing: 1px;">Des
+                    conditions d’assurance</span>
+                <span
+                    style="border: 1px solid rgba(0,0,0,0.1); padding: 10px 20px; border-radius: 4px; font-size: 0.9rem; letter-spacing: 1px;">Des
+                    coûts portuaires</span>
+            </div>
+
+            <p class="lead-text text-emphasis">Chaque projet fait l’objet d’une étude personnalisée avant déclenchement.
+            </p>
+
+            <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(0,0,0,0.05);">
+                <h3
+                    style="font-size: 2.2rem; margin-bottom: 25px; color: var(--text-main); font-family: var(--font-heading); font-weight: 400;">
+                    Une gestion conçue pour la sérénité</h3>
+                <p class="lead-text">La contribution annuelle permet aux copropriétaires de profiter pleinement de leurs
+                    semaines sans se soucier :</p>
+                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 2;">
+                    De la coordination technique &nbsp;•&nbsp;
+                    Des réparations &nbsp;•&nbsp;
+                    De la logistique &nbsp;•&nbsp;
+                    Des suivis administratifs
+                </p>
+                <p class="lead-text"
+                    style="color: var(--accent); font-family: var(--font-heading); font-size: 1.6rem; font-style: italic; margin-top: 30px;">
+                    La liberté repose sur une structure solide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="contact" class="final-cta">
+        <h2>Vous souhaitez connaître les estimations adaptées à votre projet ?</h2>
+        <p>Un entretien stratégique permet d’évaluer le modèle adapté, la part cohérente avec votre budget et
+            l’estimation annuelle correspondante.</p>
+        <p class="sub-p">Sans engagement.</p>
+        <a href="index.html#contact" class="btn btn-accent">Planifier un entretien</a>
+    </section>
+
+    <footer>
+        &copy; 2026 Ohana Caribbean Ownership Club™. Tous droits réservés.
+    </footer>
+
+</body>
+
+</html>

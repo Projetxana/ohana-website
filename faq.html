@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Ohana Caribbean Ownership Club™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #2A2A2A;
+            --text-muted: #666666;
+            --accent: #B2967D;
+            --bg-secondary: #F4F3EF;
+            --white: #FFFFFF;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* Nav */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.70rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background-color: #9a7f66;
+        }
+
+        .page-header {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1576405298495-92762a4ec410?auto=format&fit=crop&q=80&w=2000') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            background-color: var(--bg-color);
+            padding: 100px 10%;
+        }
+
+        .faq-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-category {
+            margin-bottom: 60px;
+        }
+
+        .faq-category-title {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: var(--font-body);
+            font-weight: 400;
+        }
+
+        .accordion {
+            background-color: var(--white);
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 25px 30px;
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            transition: 0.4s;
+            font-family: var(--font-body);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+            font-weight: 400;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.01);
+        }
+
+        .accordion:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .accordion:after {
+            content: '\002B';
+            /* + sign */
+            color: var(--accent);
+            font-weight: 300;
+            font-size: 1.8rem;
+            margin-left: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.active {
+            border-bottom: none;
+        }
+
+        .accordion.active:after {
+            content: "\2212";
+            /* - sign */
+        }
+
+        .panel {
+            padding: 0 30px;
+            background-color: var(--white);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            border-left: 1px solid rgba(0, 0, 0, 0.03);
+            border-right: 1px solid rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            margin-bottom: 5px;
+            margin-top: -5px;
+            /* Pull up to hide gap */
+        }
+
+        .panel-content {
+            padding: 10px 0 25px 0;
+        }
+
+        .panel p {
+            color: var(--text-muted);
+            font-weight: 300;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background-color: var(--bg-secondary);
+            padding: 120px 10%;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+        }
+
+        .final-cta p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            font-weight: 300;
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background-color: var(--white);
+            font-size: 0.8rem;
+            color: #999999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media(max-width: 900px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .accordion {
+                padding: 20px 15px;
+                font-size: 1rem;
+            }
+
+            .panel {
+                padding: 0 15px;
+            }
+
+            .faq-category-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Ohana</a></div>
+        <div class="nav-links">
+            <a href="comment-ca-fonctionne.html">Le Modèle</a>
+            <a href="modeles.html">Modèles</a>
+            <a href="gouvernance.html">Gouvernance</a>
+            <a href="budget.html">Budget</a>
+            <a href="sailing-academy.html">Academy</a>
+            <a href="souscription.html">Souscription</a>
+            <a href="cadre-programme.html">Cadre</a>
+            <a href="faq.html">FAQ</a>
+            <a href="le-cercle.html">Le Cercle</a>
+            <a href="base-martinique.html">La Base</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Questions Fréquentes</h1>
+    </header>
+
+    <section class="content-section">
+        <div class="faq-wrapper">
+
+            <!-- Categorie 1: LE MODÈLE -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Le Modèle</h2>
+
+                <button class="accordion">Est-ce un timeshare ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Non. Chaque yacht est détenu par une société dédiée dont les copropriétaires sont
+                            actionnaires.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Est-ce un investissement financier ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Non. Le programme est conçu pour un usage propriétaire, sans objectif de rendement.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Combien de copropriétaires par yacht ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Jusqu’à 6 maximum, afin de préserver l’équilibre et la qualité d’usage.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Puis-je acheter plusieurs parts ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, sous réserve de disponibilité et de cohérence du cercle.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Puis-je venir avec des invités ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, dans le respect des capacités du yacht et des règles d’usage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categorie 2: SEMAINES & PLANNING -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Semaines & Planning</h2>
+
+                <button class="accordion">Combien de semaines ai-je par an ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Chaque copropriétaire bénéficie de 8 semaines garanties par an.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Comment les semaines sont-elles réparties ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Via un système rotatif équitable, garantissant une alternance des périodes attractives au fil
+                            des années.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Puis-je échanger mes semaines ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, les échanges entre copropriétaires sont possibles.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Puis-je obtenir des semaines supplémentaires ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Si le calendrier le permet, des semaines supplémentaires peuvent être proposées.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Y a-t-il des périodes bloquées ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Une période annuelle est dédiée à la maintenance planifiée.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categorie 3: BUDGET & FINANCES -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Budget & Finances</h2>
+
+                <button class="accordion">Quels sont les coûts annuels ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Ils incluent maintenance, assurance, marina, gestion et fonds de réserve. Une estimation
+                            personnalisée est fournie avant engagement.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Y a-t-il des coûts cachés ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Non. Le budget annuel est structuré et présenté de façon transparente aux copropriétaires.
+                        </p>
+                    </div>
+                </div>
+
+                <button class="accordion">Comment sont gérés les imprévus ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Un fonds de réserve est constitué pour limiter les appels de fonds exceptionnels.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Les comptes sont-ils séparés ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui. Chaque yacht dispose d’une comptabilité et d’un compte bancaire dédiés.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categorie 4: SÉCURITÉ & NAVIGATION -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Sécurité & Navigation</h2>
+
+                <button class="accordion">Puis-je naviguer seul ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, après validation de vos compétences.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Dois-je être certifié ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Le copropriétaire skipper responsable doit être validé. Une formation en accompagnement peut
+                            être suivie via Ohana Sailing.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">La validation doit-elle être renouvelée chaque année ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Non. Une fois validée, l’autorisation de naviguer en autonomie reste acquise.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Que se passe-t-il en cas de mauvais temps ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>La sécurité prévaut. Un report peut être organisé sans frais supplémentaires en cas
+                            d’événement météorologique exceptionnel.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categorie 5: GOUVERNANCE -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Gouvernance</h2>
+
+                <button class="accordion">Comment les décisions sont-elles prises ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Selon leur nature critique ou courante, elles peuvent nécessiter une majorité simple ou
+                            qualifiée.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Puis-je refuser une dépense importante ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Les règles de vote budgétaire sont strictement définies dans les documents constitutifs de la
+                            société.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Puis-je revendre ma part ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, via un processus organisé et structuré.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Les autres copropriétaires ont-ils priorité ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, un droit de priorité interne est prévu pour les autres membres du cercle.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Le nouveau membre est-il validé ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, l'intégration est minutieusement vérifiée afin de préserver la cohérence du cercle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categorie 6: LANCEMENT & DÉPÔT -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Lancement & Dépôt</h2>
+
+                <button class="accordion">Quand le yacht est-il commandé ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Uniquement lorsque 100 % des parts sont constituées.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Le dépôt est-il sécurisé ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, il est placé dans un cadre juridique encadré et structuré.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Est-il remboursable ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui il l'est, notamment si le seuil de membres requis n’est pas atteint.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Puis-je me retirer ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Un retrait volontaire après la constitution complète du cercle peut entraîner des frais
+                            administratifs fixes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categorie 7: MARTINIQUE & NAVIGATION CARAÏBES -->
+            <div class="faq-category">
+                <h2 class="faq-category-title">Martinique & Navigation Caraïbes</h2>
+
+                <button class="accordion">Où est basé le yacht ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Au Marin principal, en Martinique.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Puis-je naviguer vers les Grenadines ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, la Martinique offre par sa position un accès direct au chapelet des Caraïbes Sud.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Peut-on organiser un départ d’une autre île ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, cela est envisageable via un repositionnement planifié à l'avance et des frais
+                            logistiques associés.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Le yacht navigue-t-il toute l’année ?</button>
+                <div class="panel">
+                    <div class="panel-content">
+                        <p>Oui, sous réserve de la validation des conditions météorologiques et des protocoles de
+                            sécurité stricts.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="contact" class="final-cta">
+        <h2>Une question reste sans réponse ?</h2>
+        <p>Un entretien stratégique permet d’aborder chaque point en détail de manière confidentielle.</p>
+        <a href="index.html#contact" class="btn btn-accent">Planifier un entretien</a>
+    </section>
+
+    <footer>
+        &copy; 2026 Ohana Caribbean Ownership Club™. Tous droits réservés.
+    </footer>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // Remove active class and max-height from all other panels to create accordion behavior
+                for (var j = 0; j < acc.length; j++) {
+                    if (acc[j] !== this) {
+                        acc[j].classList.remove("active");
+                        acc[j].nextElementSibling.style.maxHeight = null;
+                    }
+                }
+
+                // Toggle the clicked panel
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                } 
+            });
+        }
+    </script>
+</body>
+
+</html>

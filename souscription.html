@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Souscription & Dépôt Sécurisé - Ohana Caribbean Ownership Club™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #2A2A2A;
+            --text-muted: #666666;
+            --accent: #B2967D;
+            --bg-secondary: #F4F3EF;
+            --white: #FFFFFF;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-secondary);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* Nav */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.70rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background-color: #9a7f66;
+        }
+
+        .page-header {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url('processus-hero.webp') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            max-width: 900px;
+        }
+
+        .page-header p {
+            font-size: 1.15rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Content Section */
+        .content-section {
+            background-color: var(--bg-color);
+            padding: 100px 10%;
+        }
+
+        /* Intro */
+        .intro-block {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .intro-block p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 20px auto;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .intro-words {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-style: italic;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Step by Step Process */
+        .process-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            background-color: var(--white);
+            padding: 50px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.01);
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-3px);
+        }
+
+        .step-number {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: var(--accent);
+            line-height: 0.8;
+            margin-right: 40px;
+            min-width: 60px;
+            font-style: italic;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h3 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 20px;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .step-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .step-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        .step-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .step-note {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Protection Box */
+        .protection-box {
+            background-color: var(--bg-secondary);
+            padding: 80px 10%;
+            margin: 80px auto 0 auto;
+            max-width: 900px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .protection-box h2 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+        }
+
+        .protection-box p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            font-weight: 300;
+        }
+
+        .protection-list {
+            text-align: left;
+            display: inline-block;
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .protection-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        .protection-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .protection-highlight {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background-color: var(--white);
+            padding: 120px 10%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+        }
+
+        .final-cta p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 10px auto;
+            font-weight: 300;
+        }
+
+        .final-cta .sub-p {
+            color: var(--accent);
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background-color: var(--bg-secondary);
+            font-size: 0.8rem;
+            color: #999999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media(max-width: 900px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .process-step {
+                flex-direction: column;
+                padding: 40px 30px;
+            }
+
+            .step-number {
+                margin-bottom: 20px;
+            }
+
+            .intro-words {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .protection-box {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Ohana</a></div>
+        <div class="nav-links">
+            <a href="comment-ca-fonctionne.html">Le Modèle</a>
+            <a href="modeles.html">Modèles</a>
+            <a href="gouvernance.html">Gouvernance</a>
+            <a href="budget.html">Budget</a>
+            <a href="sailing-academy.html">Academy</a>
+            <a href="souscription.html">Souscription</a>
+            <a href="cadre-programme.html">Cadre</a>
+            <a href="faq.html">FAQ</a>
+            <a href="le-cercle.html">Le Cercle</a>
+            <a href="base-martinique.html">La Base</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Processus de Souscription</h1>
+        <p>Une démarche structurée et progressive</p>
+    </header>
+
+    <section class="content-section">
+
+        <div class="intro-block">
+            <p>L’entrée dans Ohana Caribbean Ownership Club™ se fait en plusieurs étapes claires.</p>
+            <p>Chaque phase est conçue pour garantir transparence, sécurité et cohérence du cercle.</p>
+
+            <div class="intro-words">
+                <span>Aucune pression.</span>
+                <span>Aucun engagement précipité.</span>
+            </div>
+        </div>
+
+        <div class="process-container">
+
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Candidature & Entretien</h3>
+                    <p>Chaque projet commence par un entretien stratégique. Cet échange permet :</p>
+                    <ul class="step-list">
+                        <li>D’évaluer l’alignement</li>
+                        <li>De comprendre votre projet</li>
+                        <li>D’identifier le modèle adapté</li>
+                        <li>D’expliquer la structure en détail</li>
+                    </ul>
+                    <div class="step-note">Cette étape est confidentielle et sans engagement.</div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Réservation d’une part</h3>
+                    <p>Après validation mutuelle, une réservation peut être effectuée. Elle nécessite un dépôt sécurisé.
+                    </p>
+                    <p>Ce dépôt :</p>
+                    <ul class="step-list">
+                        <li>Est placé sur un compte dédié</li>
+                        <li>Confirme votre intention</li>
+                        <li>Permet la constitution progressive du cercle</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Sécurisation des fonds</h3>
+                    <p>Le dépôt est :</p>
+                    <ul class="step-list">
+                        <li>100 % remboursable si le seuil de souscription n’est pas atteint</li>
+                        <li>Conservé dans un cadre structuré jusqu’au déclenchement</li>
+                    </ul>
+                    <p>Si le cercle est constitué et que le réservataire se retire volontairement, des frais
+                        administratifs fixes peuvent être retenus.</p>
+                    <div class="step-note">Cette structure garantit équité pour tous les membres engagés.</div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3>Constitution complète du cercle</h3>
+                    <p>Le yacht est déclenché uniquement lorsque 100 % des parts sont constituées.</p>
+                    <p>À ce stade :</p>
+                    <ul class="step-list">
+                        <li>La société dédiée est créée</li>
+                        <li>Les documents constitutifs sont finalisés</li>
+                        <li>La commande officielle est transmise au constructeur</li>
+                    </ul>
+                    <div class="step-note">Aucun yacht n’est acquis sans cercle complet.</div>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">05</div>
+                <div class="step-content">
+                    <h3>Activation & Planification</h3>
+                    <p>Une fois le yacht livré et audité à la base :</p>
+                    <ul class="step-list">
+                        <li>Le calendrier est activé</li>
+                        <li>Les périodes sont réparties selon le système rotatif</li>
+                        <li>Les standards de gestion s’appliquent</li>
+                    </ul>
+                    <div class="step-note">Le cercle devient dès lors pleinement opérationnel.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="protection-box">
+            <h2>Un modèle conçu pour protéger</h2>
+            <p>Ce processus d'intégration transparent permet :</p>
+
+            <ul class="protection-list">
+                <li>De sécuriser les copropriétaires</li>
+                <li>D’éviter tout risque lié à un cercle incomplet</li>
+                <li>De préserver la stabilité financière globale</li>
+                <li>De garantir la cohérence du groupe d'associés</li>
+            </ul>
+
+            <div class="protection-highlight">La sécurité financière est un principe fondateur du programme.</div>
+        </div>
+
+    </section>
+
+    <!-- Final CTA -->
+    <section id="contact" class="final-cta">
+        <h2>Prêt à initier la démarche ?</h2>
+        <p>Un entretien stratégique est la première étape.</p>
+        <p class="sub-p">Sans engagement. Sans pression.</p>
+        <br>
+        <a href="index.html#contact" class="btn btn-accent">Planifier un entretien</a>
+    </section>
+
+    <footer>
+        &copy; 2026 Ohana Caribbean Ownership Club™. Tous droits réservés.
+    </footer>
+
+</body>
+
+</html>

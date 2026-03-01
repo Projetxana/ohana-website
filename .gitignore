@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+
+# Backups and Previews
+*.zip
+V2_Preview/

@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Modèles - Ohana Caribbean Ownership Club™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #2A2A2A;
+            --text-muted: #666666;
+            --accent: #C2A48D;
+            --bg-secondary: #F4F3EF;
+            --white: #FFFFFF;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* Nav */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.70rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background-color: #a88a73;
+        }
+
+        /* Hero */
+        .page-header {
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('Photos excess 13/1687-excess-13-slider-sous-voile-06.jpg') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .header-tag {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Generic Section */
+        .section-padding-sm {
+            padding: 60px 10%;
+        }
+
+        .bg-white {
+            background-color: var(--white);
+        }
+
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .h2-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: inherit;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .text-lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Models Section */
+        .model-section {
+            padding: 100px 5%;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background-color: var(--white);
+        }
+
+        .model-section:nth-of-type(even) {
+            background-color: var(--bg-color);
+        }
+
+        .model-intro {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .model-intro.reverse {
+            grid-template-columns: 1.1fr 1fr;
+        }
+
+        .model-text {
+            padding-right: 20px;
+        }
+
+        .model-intro.reverse .model-text {
+            order: 2;
+            padding-right: 0;
+            padding-left: 20px;
+        }
+
+        .model-intro.reverse .model-photos {
+            order: 1;
+        }
+
+        .cat-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .cat-title {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            line-height: 1;
+            color: var(--text-main);
+        }
+
+        .cat-desc {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .specs-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .specs-list li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .specs-list strong {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* Photos Grid */
+        .model-photos {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+
+        .secondary-imgs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .secondary-imgs img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Simulation Block Layout */
+        .simulation-container {
+            max-width: 1300px;
+            margin: 80px auto 0;
+            background-color: var(--bg-secondary);
+            padding: 80px 60px;
+        }
+
+        .sim-header {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--text-main);
+            margin-bottom: 50px;
+        }
+
+        .sim-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .sim-card-box {
+            background: var(--white);
+            padding: 40px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sim-card-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .sim-card-huge {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 40px;
+            line-height: 1;
+        }
+
+        .sim-card-huge span {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+        }
+
+        .sim-card-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--text-muted);
+        }
+
+        .sim-card-row:first-of-type {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .sim-card-row:last-child {
+            border-bottom: none;
+        }
+
+        .sim-card-row.sim-card-total {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .sim-card-list {
+            list-style: none;
+            margin-top: 10px;
+            padding: 0 10px;
+        }
+
+        .sim-card-list li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding: 15px 0;
+            position: relative;
+            padding-left: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .sim-card-list li:first-child {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .sim-card-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+            line-height: 1;
+            top: 14px;
+        }
+
+        .sim-card-list li:last-child {
+            border-bottom: none;
+        }
+
+        .sim-comparison {
+            background: var(--white);
+            padding: 60px 80px;
+            margin-top: 40px;
+        }
+
+        .sim-comp-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 60px;
+            color: var(--text-main);
+            font-style: italic;
+        }
+
+        .sim-comp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .sim-comp-col {
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .sim-comp-col:last-child {
+            border-left: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .sim-comp-header {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .sim-comp-col:last-child .sim-comp-header {
+            color: var(--accent);
+        }
+
+        .sim-comp-val {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* CTA */
+        .final-cta {
+            background-color: var(--bg-secondary);
+            padding: 120px 10%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background-color: var(--white);
+            font-size: 0.8rem;
+            color: #999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        @media(max-width: 1024px) {
+
+            .model-intro,
+            .model-intro.reverse {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .model-intro.reverse .model-text {
+                order: unset;
+                padding-left: 0;
+            }
+
+            .model-intro.reverse .model-photos {
+                order: unset;
+            }
+
+            .sim-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sim-comp-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .sim-comp-col:last-child {
+                border-left: none;
+                padding-top: 40px;
+                border-top: 1px solid rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        @media(max-width: 768px) {
+            .page-header h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .simulation-container {
+                padding: 40px 20px;
+            }
+
+            .sim-card-box {
+                padding: 40px 20px;
+            }
+
+            .sim-comparison {
+                padding: 40px 20px;
+            }
+
+            .main-img {
+                height: 300px;
+            }
+
+            .secondary-imgs img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Ohana</a></div>
+        <div class="nav-links">
+            <a href="comment-ca-fonctionne.html">Le Modèle</a>
+            <a href="modeles.html">Modèles</a>
+            <a href="gouvernance.html">Gouvernance</a>
+            <a href="budget.html">Budget</a>
+            <a href="sailing-academy.html">Academy</a>
+            <a href="souscription.html">Souscription</a>
+            <a href="cadre-programme.html">Cadre</a>
+            <a href="faq.html">FAQ</a>
+            <a href="le-cercle.html">Le Cercle</a>
+            <a href="base-martinique.html">La Base</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-tag">Flotte de lancement</div>
+        <h1>Nos Modèles</h1>
+        <p>Gamme Excess Catamarans</p>
+    </header>
+
+    <section class="section-padding-sm bg-white">
+        <div class="container-narrow">
+            <h2 class="h2-title">Une ligne audacieuse</h2>
+            <p class="subtitle">L'équilibre parfait entre sensations et espace</p>
+            <p class="text-lead">Le programme de lancement Ohana Caribbean s'articule exclusivement autour des
+                catamarans de la gamme Excess. Ces unités offrent un compromis exceptionnel : le volume et le confort
+                d'un catamaran de croisière de standing, alliés à des sensations de barre et des performances sous
+                voiles bien supérieures aux standards classiques.</p>
+        </div>
+    </section>
+
+    <!-- EXCESS 11 -->
+    <section class="model-section" id="excess-11">
+        <div class="model-intro">
+            <div class="model-text">
+                <div class="cat-tag">Entrée de gamme optimale</div>
+                <h2 class="cat-title">Excess 11</h2>
+                <p class="cat-desc">
+                    L'Excess 11 est le seul catamaran de grande série de cette taille sur le marché. Bénéficiant de
+                    l'expertise Excess, il offre l'habitabilité d'un grand croiseur avec des sensations de navigation
+                    exaltantes. Parfait pour se lancer dans la propriété, ses lignes fluides et son double poste de
+                    barre arrière le rendent idéal pour des navigations dans les Caraïbes, en couple ou en famille,
+                    alliant confort absolu et performances sous voiles.
+                </p>
+                <ul class="specs-list">
+                    <li><strong>Longueur :</strong> 11.42 m (37')</li>
+                    <li><strong>Largeur :</strong> 6.59 m</li>
+                    <li><strong>Tirant d'eau :</strong> 1.15 m</li>
+                    <li><strong>Cabines :</strong> 3 ou 4 cabines</li>
+                </ul>
+            </div>
+            <div class="model-photos">
+                <img src="Photos excess 11/8375-240112-mlr-excess-1920-copie.webp" alt="Excess 11 Navigation"
+                    class="main-img">
+                <div class="secondary-imgs">
+                    <img src="Photos excess 11/7070-excess1100305-lr.jpg" alt="Excess 11 Extérieur">
+                    <img src="Photos excess 11/1203-excess11-int-ncz7753-web.jpg" alt="Excess 11 Intérieur">
+                </div>
+            </div>
+        </div>
+
+        <div class="simulation-container">
+            <h3 class="sim-header">Simulation indicative – Excess 11</h3>
+
+            <div class="sim-cards-grid">
+                <div class="sim-card-box">
+                    <div class="sim-card-title">Investissement initial</div>
+                    <div class="sim-card-huge">108 000 €</div>
+                    <div class="sim-card-row">
+                        <span>Prix yacht estimé</span><span>~600 000 €</span>
+                    </div>
+                    <div class="sim-card-row">
+                        <span>Part estimée</span><span>100 000 €</span>
+                    </div>
+                    <div class="sim-card-row">
+                        <span>Frais de structuration</span><span>~8 000 €</span>
+                    </div>
+                    <div class="sim-card-row sim-card-total">
+                        <span>Total estimé</span><span>~108 000 €</span>
+                    </div>
+                </div>
+
+                <div class="sim-card-box">
+                    <div class="sim-card-title">Charges annuelles</div>
+                    <div class="sim-card-huge">~1 000 € <span>/ mois</span></div>
+                    <div class="sim-card-row">
+                        <span>Budget global</span><span>~72 000 € / an</span>
+                    </div>
+                    <div class="sim-card-row">
+                        <span>Par copropriétaire</span><span>~12 000 € / an</span>
+                    </div>
+                </div>
+
+                <div class="sim-card-box">
+                    <div class="sim-card-title">Ce que cela représente</div>
+                    <ul class="sim-card-list">
+                        <li>8 semaines garanties</li>
+                        <li>Gestion intégrée</li>
+                        <li>Structure dédiée</li>
+                        <li>Usage strictement propriétaire</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sim-comparison">
+                <h4 class="sim-comp-title">Une autre façon d'accéder à la propriété</h4>
+                <div class="sim-comp-grid">
+                    <div class="sim-comp-col">
+                        <div class="sim-comp-header">Propriété Individuelle</div>
+                        <div class="sim-comp-val">~600 000 €</div>
+                        <div class="sim-comp-val">~70 000 € / an</div>
+                        <div class="sim-comp-val">6 à 8 semaines d'usage réel</div>
+                        <div class="sim-comp-val">Responsabilité complète</div>
+                    </div>
+                    <div class="sim-comp-col">
+                        <div class="sim-comp-header">Propriété Structurée</div>
+                        <div class="sim-comp-val">~108 000 €</div>
+                        <div class="sim-comp-val">~1 000 € / mois</div>
+                        <div class="sim-comp-val">8 semaines garanties</div>
+                        <div class="sim-comp-val">Gestion intégrée</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXCESS 13 -->
+    <section class="model-section" id="excess-13">
+        <div class="model-intro reverse">
+            <div class="model-text">
+                <div class="cat-tag">Le nouveau standard</div>
+                <h2 class="cat-title">Excess 13</h2>
+                <p class="cat-desc">
+                    L'innovation par essence. Conçu par Marc Lombard Yacht Design, l'Excess 13 repousse les limites de
+                    la fluidité à bord avec ses lignes tendues, un rouf allongé et un mât reculé. Idéal pour conjuguer
+                    accueil haut de gamme et pur plaisir de navigation sous le soleil antillais. Son aménagement réduit
+                    le fardage et offre un remarquable rapport surface de voile/déplacement, garantissant des sensations
+                    exceptionnelles pour sa catégorie.
+                </p>
+                <ul class="specs-list">
+                    <li><strong>Longueur :</strong> 12.99 m (42')</li>
+                    <li><strong>Largeur :</strong> 7.25 m</li>
+                    <li><strong>Tirant d'eau :</strong> 1.48 m</li>
+                    <li><strong>Cabines :</strong> 3 ou 4 cabines</li>
+                </ul>
+            </div>
+            <div class="model-photos">
+                <img src="Photos excess 13/2154-excess-13-slider-sous-voile-03.jpg" alt="Excess 13 Navigation"
+                    class="main-img">
+                <div class="secondary-imgs">
+                    <img src="Photos excess 13/5076-excess-13-slider-ext-5.jpg" alt="Excess 13 Extérieur">
+                    <img src="Photos excess 13/1570-excess-13-slider-int-09.jpg" alt="Excess 13 Intérieur">
+                </div>
+            </div>
+        </div>
+
+        <div class="simulation-container">
+            <h3 class="sim-header">Simulation indicative – Excess 13</h3>
+
+            <div class="sim-cards-grid">
+                <div class="sim-card-box">
+                    <div class="sim-card-title">Investissement initial</div>
+                    <div class="sim-card-huge">150 000 €</div>
+                    <div class="sim-card-row">
+                        <span>Prix yacht estimé</span><span>~840 000 €</span>
+                    </div>
+                    <div class="sim-card-row">
+                        <span>Part estimée</span><span>140 000 €</span>
+                    </div>
+                    <div class="sim-card-row">
+                        <span>Frais de structuration</span><span>~10 000 €</span>
+                    </div>
+                    <div class="sim-card-row sim-card-total">
+                        <span>Total estimé</span><span>~150 000 €</span>
+                    </div>
+                </div>
+
+                <div class="sim-card-box">
+                    <div class="sim-card-title">Charges annuelles</div>
+                    <div class="sim-card-huge">~1 300 € <span>/ mois</span></div>
+                    <div class="sim-card-row">
+                        <span>Budget global</span><span>~93 600 € / an</span>
+                    </div>
+                    <div class="sim-card-row">
+                        <span>Par copropriétaire</span><span>~15 600 € / an</span>
+                    </div>
+                </div>
+
+                <div class="sim-card-box">
+                    <div class="sim-card-title">Ce que cela représente</div>
+                    <ul class="sim-card-list">
+                        <li>8 semaines garanties</li>
+                        <li>Gestion intégrée</li>
+                        <li>Structure dédiée</li>
+                        <li>Usage strictement propriétaire</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sim-comparison">
+                <h4 class="sim-comp-title">Une autre façon d'accéder à la propriété</h4>
+                <div class="sim-comp-grid">
+                    <div class="sim-comp-col">
+                        <div class="sim-comp-header">Propriété Individuelle</div>
+                        <div class="sim-comp-val">~840 000 €</div>
+                        <div class="sim-comp-val">~90 000 € / an</div>
+                        <div class="sim-comp-val">6 à 8 semaines d'usage réel</div>
+                        <div class="sim-comp-val">Responsabilité complète</div>
+                    </div>
+                    <div class="sim-comp-col">
+                        <div class="sim-comp-header">Propriété Structurée</div>
+                        <div class="sim-comp-val">~150 000 €</div>
+                        <div class="sim-comp-val">~1 300 € / mois</div>
+                        <div class="sim-comp-val">8 semaines garanties</div>
+                        <div class="sim-comp-val">Gestion intégrée</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXCESS 14 -->
+    <section class="model-section" id="excess-14">
+        <div class="model-intro">
+            <div class="model-text">
+                <div class="cat-tag">Le Navire Amiral</div>
+                <h2 class="cat-title">Excess 14</h2>
+                <p class="cat-desc">
+                    Le pur luxe de l'espace allié à une audace architecturale. Dessiné en collaboration avec VPLP,
+                    l'Excess 14 présente un design puissant avec des carènes asymétriques favorisant une trainée minime.
+                    Ses étraves inversées, ses ailerons optimisés et son gréement reculé lui procurent un dynamisme
+                    digne d'un monocoque, tandis que sa coque propriétaire vous accueille dans une suite aux dimensions
+                    grandioses. Le summum de l'expérience en mer.
+                </p>
+                <ul class="specs-list">
+                    <li><strong>Longueur :</strong> 13.97 m (45')</li>
+                    <li><strong>Largeur :</strong> 7.87 m</li>
+                    <li><strong>Tirant d'eau :</strong> 1.48 m</li>
+                    <li><strong>Cabines :</strong> 3 ou 4 cabines</li>
+                </ul>
+            </div>
+            <div class="model-photos">
+                <img src="Photos excess 14/3109-excess14-0678.jpg" alt="Excess 14 Navigation" class="main-img">
+                <div class="secondary-imgs">
+                    <img src="Photos excess 14/1463-excess-14-0371.webp" alt="Excess 14 Extérieur">
+                    <img src="Photos excess 14/excess-14-catamaran-saloon-1280x853.jpg" alt="Excess 14 Intérieur">
+                </div>
+            </div>
+        </div>
+
+        <div class="simulation-container">
+            <h3 class="sim-header">Simulation indicative – Excess 14</h3>
+
+            <div class="sim-cards-grid">
+                <div class="sim-card-box">
+                    <div class="sim-card-title">Investissement initial</div>
+                    <div class="sim-card-huge">192 000 €</div>
+                    <div class="sim-card-row">
+                        <span>Prix yacht estimé</span><span>~1 080 000 €</span>
+                    </div>
+                    <div class="sim-card-row">
+                        <span>Part estimée</span><span>180 000 €</span>
+                    </div>
+                    <div class="sim-card-row">
+                        <span>Frais de structuration</span><span>~12 000 €</span>
+                    </div>
+                    <div class="sim-card-row sim-card-total">
+                        <span>Total estimé</span><span>~192 000 €</span>
+                    </div>
+                </div>
+
+                <div class="sim-card-box">
+                    <div class="sim-card-title">Charges annuelles</div>
+                    <div class="sim-card-huge">~1 600 € <span>/ mois</span></div>
+                    <div class="sim-card-row">
+                        <span>Budget global</span><span>~115 200 € / an</span>
+                    </div>
+                    <div class="sim-card-row">
+                        <span>Par copropriétaire</span><span>~19 200 € / an</span>
+                    </div>
+                </div>
+
+                <div class="sim-card-box">
+                    <div class="sim-card-title">Ce que cela représente</div>
+                    <ul class="sim-card-list">
+                        <li>8 semaines garanties</li>
+                        <li>Gestion intégrée</li>
+                        <li>Structure dédiée</li>
+                        <li>Usage strictement propriétaire</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sim-comparison">
+                <h4 class="sim-comp-title">Une autre façon d'accéder à la propriété</h4>
+                <div class="sim-comp-grid">
+                    <div class="sim-comp-col">
+                        <div class="sim-comp-header">Propriété Individuelle</div>
+                        <div class="sim-comp-val">~1 080 000 €</div>
+                        <div class="sim-comp-val">~110 000 € / an</div>
+                        <div class="sim-comp-val">6 à 8 semaines d'usage réel</div>
+                        <div class="sim-comp-val">Responsabilité complète</div>
+                    </div>
+                    <div class="sim-comp-col">
+                        <div class="sim-comp-header">Propriété Structurée</div>
+                        <div class="sim-comp-val">~192 000 €</div>
+                        <div class="sim-comp-val">~1 600 € / mois</div>
+                        <div class="sim-comp-val">8 semaines garanties</div>
+                        <div class="sim-comp-val">Gestion intégrée</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="contact" class="final-cta">
+        <h2>Un modèle vous correspond particulièrement ?</h2>
+        <a href="index.html#contact" class="btn btn-accent">Vérifier les disponibilités du Cercle</a>
+    </section>
+
+    <footer>
+        &copy; 2026 Ohana Caribbean Ownership Club™. Tous droits réservés.
+    </footer>
+
+</body>
+
+</html>
