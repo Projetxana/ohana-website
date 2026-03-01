@@ -215,6 +215,42 @@
             margin: 40px auto;
         }
 
+        /* Circle Diagram */
+        .circle-diagram-wrapper {
+            position: relative;
+            max-width: 700px;
+            margin: 80px auto;
+        }
+
+        .circle-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            height: 380px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .circle-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 160px 20px;
+            text-align: center;
+        }
+
+        .circle-item {
+            background-color: var(--bg-secondary);
+            padding: 15px 25px;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
         /* Grid Lists */
         .features-grid {
             display: grid;
@@ -315,8 +351,17 @@
             }
 
             .process-grid,
-            .features-grid {
+            .features-grid,
+            .circle-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .circle-grid {
+                gap: 40px;
+            }
+
+            .circle-line {
+                display: none;
             }
 
             .section-padding {
@@ -369,22 +414,25 @@
             <h2 class="h2-title">Pourquoi un cercle ?</h2>
             <p class="text-lead" style="margin-bottom: 50px;">Parce que la copropriété ne fonctionne que si :</p>
 
-            <div class="features-grid" style="text-align: center; grid-template-columns: 1fr 1fr; gap: 30px;">
-                <div style="padding: 20px;">
-                    <h3 class="feature-title" style="color: var(--accent);">Les attentes</h3>
-                    <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">sont cohérentes</p>
-                </div>
-                <div style="padding: 20px;">
-                    <h3 class="feature-title" style="color: var(--accent);">Les usages</h3>
-                    <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">sont respectueux</p>
-                </div>
-                <div style="padding: 20px;">
-                    <h3 class="feature-title" style="color: var(--accent);">La navigation</h3>
-                    <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">est maîtrisée</p>
-                </div>
-                <div style="padding: 20px;">
-                    <h3 class="feature-title" style="color: var(--accent);">La communication</h3>
-                    <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">est fluide</p>
+            <div class="circle-diagram-wrapper">
+                <div class="circle-line"></div>
+                <div class="circle-grid">
+                    <div class="circle-item">
+                        <h3 class="feature-title" style="color: var(--accent);">Les attentes</h3>
+                        <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">sont cohérentes</p>
+                    </div>
+                    <div class="circle-item">
+                        <h3 class="feature-title" style="color: var(--accent);">Les usages</h3>
+                        <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">sont respectueux</p>
+                    </div>
+                    <div class="circle-item">
+                        <h3 class="feature-title" style="color: var(--accent);">La navigation</h3>
+                        <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">est maîtrisée</p>
+                    </div>
+                    <div class="circle-item">
+                        <h3 class="feature-title" style="color: var(--accent);">La communication</h3>
+                        <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">est fluide</p>
+                    </div>
                 </div>
             </div>
 
