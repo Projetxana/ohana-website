@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Cercle - Ohana Caribbean Ownership Club™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #2A2A2A;
+            --text-muted: #666666;
+            --accent: #B2967D;
+            --bg-secondary: #F4F3EF;
+            --white: #FFFFFF;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+
+        /* Nav */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.70rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background-color: #9a7f66;
+        }
+
+        /* Hero */
+        .page-header {
+            height: 90vh;
+            /* Immersive */
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1599640842225-85d111c682a2?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .header-tag {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .page-header h1 {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .page-header p {
+            font-size: 1.6rem;
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 1px;
+            max-width: 600px;
+        }
+
+        /* Section Layout */
+        .section-padding {
+            padding: 120px 10%;
+        }
+
+        .bg-white {
+            background-color: var(--white);
+        }
+
+        .bg-gray {
+            background-color: var(--bg-secondary);
+        }
+
+        .container-narrow {
+            max-width: 750px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Typography Info */
+        .h2-title {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+        }
+
+        .text-lead {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .text-lead strong {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .quote-block {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--accent);
+            line-height: 1.4;
+            margin: 60px auto;
+            max-width: 800px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .divider {
+            width: 1px;
+            height: 80px;
+            background-color: var(--accent);
+            margin: 40px auto;
+        }
+
+        /* Grid Lists */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+            text-align: left;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-item {
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-left: 2px solid var(--accent);
+        }
+
+        .bg-gray .feature-item {
+            background: var(--white);
+        }
+
+        .feature-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-num {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            opacity: 0.5;
+            line-height: 1;
+        }
+
+        .step-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background-color: var(--white);
+            padding: 120px 10%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .final-cta h2 {
+            font-size: 2.8rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .final-cta p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer {
+            padding: 60px 10%;
+            text-align: center;
+            background-color: var(--bg-secondary);
+            font-size: 0.8rem;
+            color: #999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        @media(max-width: 900px) {
+            .page-header h1 {
+                font-size: 3.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .process-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-padding {
+                padding: 80px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Ohana</a></div>
+        <div class="nav-links">
+            <a href="le-cercle.html">Le Cercle</a>
+            <a href="modeles.html">Modèles</a>
+            <a href="gouvernance.html">Gouvernance</a>
+            <a href="budget.html">Budget</a>
+            <a href="sailing-academy.html">Academy</a>
+            <a href="souscription.html">Souscription</a>
+            <a href="cadre-programme.html">Cadre</a>
+            <a href="faq.html">FAQ</a>
+            <a href="base-martinique.html">La Base</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="header-tag">Un cercle de propriétaires</div>
+        <h1>Le Cercle</h1>
+        <p>Plus qu’une copropriété. Une cohérence.</p>
+    </header>
+
+    <!-- Intro Conviction -->
+    <section class="section-padding bg-white">
+        <div class="container-narrow">
+            <p class="text-lead" style="font-size: 1.4rem;">Ohana Caribbean Ownership Club™ repose sur une conviction
+                simple :</p>
+            <div class="quote-block">
+                La qualité d’un yacht dépend autant de sa structure que des personnes qui le partagent.
+            </div>
+            <p class="text-lead">Chaque catamaran est entouré d’un cercle restreint.<br><strong>Aligné. Responsable.
+                    Engagé.</strong></p>
+        </div>
+    </section>
+
+    <!-- Pourquoi un cercle -->
+    <section class="section-padding bg-gray">
+        <div class="container-narrow">
+            <h2 class="h2-title">Pourquoi un cercle ?</h2>
+            <p class="text-lead" style="margin-bottom: 50px;">Parce que la copropriété ne fonctionne que si :</p>
+
+            <div class="features-grid" style="text-align: center; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div style="padding: 20px;">
+                    <h3 class="feature-title" style="color: var(--accent);">Les attentes</h3>
+                    <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">sont cohérentes</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h3 class="feature-title" style="color: var(--accent);">Les usages</h3>
+                    <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">sont respectueux</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h3 class="feature-title" style="color: var(--accent);">La navigation</h3>
+                    <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">est maîtrisée</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h3 class="feature-title" style="color: var(--accent);">La communication</h3>
+                    <p class="text-lead" style="font-size: 1.1rem; margin-bottom: 0;">est fluide</p>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+            <p class="text-lead">Nous privilégions <strong>la stabilité à la quantité</strong>.<br><strong>La cohérence
+                    à la rapidité</strong>.</p>
+        </div>
+    </section>
+
+    <!-- Profil des membres -->
+    <section class="section-padding bg-white">
+        <div class="container-narrow" style="max-width: 900px;">
+            <h2 class="h2-title">Le profil des membres</h2>
+            <p class="text-lead">Nos copropriétaires sont avant tout :</p>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <p class="text-lead" style="margin-bottom: 0; color: var(--text-main);">Passionnés de navigation</p>
+                </div>
+                <div class="feature-item">
+                    <p class="text-lead" style="margin-bottom: 0; color: var(--text-main);">Sensibles à la qualité et à
+                        la structure</p>
+                </div>
+                <div class="feature-item">
+                    <p class="text-lead" style="margin-bottom: 0; color: var(--text-main);">Soucieux de préserver la
+                        valeur de l’actif</p>
+                </div>
+                <div class="feature-item">
+                    <p class="text-lead" style="margin-bottom: 0; color: var(--text-main);">À la recherche d’un accès
+                        organisé, non spéculatif</p>
+                </div>
+            </div>
+
+            <p class="text-lead" style="margin-top: 60px;">Le cercle n’est pas ouvert à tous. <strong>Il est constitué
+                    avec attention.</strong></p>
+        </div>
+    </section>
+
+    <!-- Processus & Charte -->
+    <section class="section-padding bg-gray">
+        <div class="container-narrow" style="max-width: 1000px;">
+            <h2 class="h2-title">Le processus d’entrée</h2>
+            <p class="text-lead">L’intégration se fait en quatre étapes :</p>
+
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-num">01</div>
+                    <div class="step-title">Candidature<br>confidentielle</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">02</div>
+                    <div class="step-title">Entretien<br>stratégique</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">03</div>
+                    <div class="step-title">Validation<br>mutuelle</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">04</div>
+                    <div class="step-title">Réservation<br>de part</div>
+                </div>
+            </div>
+
+            <p class="text-lead" style="font-size: 1.1rem; margin-top: 30px;">Chaque étape vise à assurer un alignement
+                réel.</p>
+
+            <div class="divider"></div>
+
+            <h2 class="h2-title" style="margin-top: 60px;">Une charte implicite</h2>
+            <p class="text-lead">L’esprit du cercle repose sur : le respect du yacht, le respect du calendrier, une
+                navigation responsable et une communication transparente.</p>
+            <p class="quote-block" style="font-size: 1.8rem; margin: 40px auto 0;">Ce cadre protège l’expérience de
+                chacun.</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="final-cta">
+        <h2
+            style="font-size: 2rem; color: var(--accent); font-family: var(--font-body); text-transform: uppercase; letter-spacing: 2px; font-weight: 400; font-size: 0.9rem; margin-bottom: 15px;">
+            Un nombre volontairement limité</h2>
+        <h2>Le cercle du Marin est ciblé</h2>
+        <p>Cette limite n’est pas une contrainte. C’est une garantie de qualité. Vous souhaitez évaluer votre
+            éligibilité ? Un entretien stratégique permet d’échanger en toute confidentialité.</p>
+        <p
+            style="font-family: var(--font-heading); font-style: italic; color: var(--accent); font-size: 1.4rem; margin-top: -20px; margin-bottom: 40px;">
+            Sans engagement.</p>
+        <a href="index.html#contact" class="btn btn-accent">M'entretenir avec l'équipe</a>
+    </section>
+
+    <footer>
+        &copy; 2026 Ohana Caribbean Ownership Club™. Tous droits réservés.
+    </footer>
+
+</body>
+
+</html>
