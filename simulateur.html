@@ -758,7 +758,8 @@
 
             function calculate() {
                 // 1. Fetch values
-                const nbMarinMax = parseInt(sliderMa            const nbBviMax = parseInt(sliderBvi.value);
+                const nbMarinMax = parseInt(sliderMarin.value);
+            const nbBviMax = parseInt(sliderBvi.value);
                 const bviStartYear = parseInt(selectBviYear.value);
                 const revAnnexesMax = parseInt(sliderRev.value);
 
@@ -783,11 +784,11 @@
                 for (let year = 1; year <= 5; year++) {
                     // --- MARIN LOGIC ---
                     let marinRamp = getRampUpFactor(year);
-                    let currentMarinYachts = Math.round(nbMarp);
+                    let currentMarinYachts = Math.round(nbMarinMax * marinRamp);
 
                     // Revenus Annexes triggés à 100% seulement
                     let marinRevAnx = (marinRamp === 1.0 && currentMarinYachts > 0) ? revAnnexesMax : 0;
-                    let revMarin = currentMarinYachts > 0 ? chts * REV_GESTION_YACHT) + marinRevAnx : 0;
+                    let revMarin = currentMarinYachts > 0 ? (currentMarinYachts * REV_GESTION_YACHT) + marinRevAnx : 0;
 
                     let eqMarin = getEquipeLocale(currentMarinYachts);
                     let depMarin = currentMarinYachts > 0 ? (eqMarin + FRAIS_MARKETING + FRAIS_DIVERS) : 0;
@@ -797,11 +798,11 @@
                     let resBvi = 0;
                     let revBvi = 0;
                     let depBvi = 0;
-                    chts = 0;
+                    let currentBviYachts = 0;
 
                     let bviActiveYears = (bviStartYear > 0 && year >= bviStartYear) ? (year - bviStartYear + 1) : 0;
                 
-               > 0 && nbBviMax > 0) {
+                if (bviActiveYears > 0 && nbBviMax > 0) {
                         let bviRamp = getRampUpFactor(bviActiveYears);
                         currentBviYachts = Math.round(nbBviMax * bviRamp);
 
@@ -814,12 +815,12 @@
                     }
 
                     // --- BACK-OFFICE MUTUALISÉ ---
-                    tsCurrent = curretMarinYachts + currentBviYachts;
+                    let totalYachtsCurrent = currentMarinYachts + currentBviYachts;
                     let boCost = getBackOffice(totalYachtsCurrent);
 
                     // --- CONSOLIDATION ---
                     let totalRev = revMarin + revBvi;
-                    let totalDep = depMari + depBvi + boCost;
+                    let totalDep = depMarin + depBvi + boCost;
                     let resGlobal = totalRev - totalDep;
 
                     totalCumul += resGlobal;
