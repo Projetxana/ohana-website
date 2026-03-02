@@ -2,21 +2,7 @@
 <html lang="fr">
 
 <head>
-// Access Check
-(function() {
-    const code = sessionStorage.getItem('bp_access');
-    if (code !== '2502') {
-        document.documentElement.style.display = 'none'; // quick hide
-        const input = prompt("Accès sécurisé. Veuillez entrer le code d'accès :");
-        if (input === '2502') {
-            sessionStorage.setItem('bp_access', '2502');
-            document.documentElement.style.display = ''; // reveal
-        } else {
-            alert("Code incorrect.");
-            window.location.href = "index.html";
-        }
-    }
-})();
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Plan - Caribbean Ownership Club™</title>
@@ -569,6 +555,26 @@
             }
         }
     </style>
+<script>
+
+</script>
+<script>
+// Access Check
+(function() {
+    const code = sessionStorage.getItem('bp_access');
+    if (code !== '2502') {
+        document.documentElement.style.display = 'none'; // quick hide
+        const input = prompt("Accès sécurisé. Veuillez entrer le code d'accès :");
+        if (input === '2502') {
+            sessionStorage.setItem('bp_access', '2502');
+            document.documentElement.style.display = ''; // reveal
+        } else {
+            alert("Code incorrect.");
+            window.location.href = "index.html";
+        }
+    }
+})();
+</script>
 </head>
 
 <body>
@@ -778,48 +784,7 @@
                 </table>
             </div>
 
-            <!-- Vertical Chart Marin -->
-            <!-- Max height 100px for 132k setup -->
-            <div class="v-chart-container">
-                <div class="v-zero-line"></div>
-
-                <div class="v-col">
-                    <div class="inner-neg" style="height: 19%;">
-                        <div class="v-bar neg" style="height: 100%;"></div>
-                        <div class="v-val neg">-25k</div>
-                    </div>
-                    <div class="v-label-bottom">A1</div>
-                </div>
-                <div class="v-col">
-                    <div class="inner-pos" style="height: 47%;">
-                        <div class="v-bar pos" style="height: 100%;"></div>
-                        <div class="v-val pos">63k</div>
-                    </div>
-                    <div class="v-label-bottom">A2</div>
-                </div>
-                <div class="v-col">
-                    <div class="inner-pos" style="height: 96%;">
-                        <div class="v-bar pos" style="height: 100%;"></div>
-                        <div class="v-val pos">127k</div>
-                    </div>
-                    <div class="v-label-bottom">A3</div>
-                </div>
-                <div class="v-col">
-                    <div class="inner-pos" style="height: 98%;">
-                        <div class="v-bar pos" style="height: 100%;"></div>
-                        <div class="v-val pos">129k</div>
-                    </div>
-                    <div class="v-label-bottom">A4</div>
-                </div>
-                <div class="v-col">
-                    <div class="inner-pos" style="height: 100%;">
-                        <div class="v-bar pos" style="height: 100%;"></div>
-                        <div class="v-val pos">132k</div>
-                    </div>
-                    <div class="v-label-bottom">A5</div>
-                </div>
-            </div>
-        </section>
+            </section>
 
         <!-- SECTION 3 – BASE BVI -->
         <section class="bp-block">
@@ -951,48 +916,7 @@
                 </table>
             </div>
 
-            <!-- Vertical Chart BVI -->
-            <!-- Max height 100px for 112k setup -->
-            <div class="v-chart-container">
-                <div class="v-zero-line"></div>
-
-                <div class="v-col">
-                    <div class="inner-pos" style="height: 0%;">
-                        <div class="v-bar pos" style="height: 100%;"></div>
-                        <div class="v-val pos" style="color:#A0A0A0;">0</div>
-                    </div>
-                    <div class="v-label-bottom">A1</div>
-                </div>
-                <div class="v-col">
-                    <div class="inner-pos" style="height: 0%;">
-                        <div class="v-bar pos" style="height: 100%;"></div>
-                        <div class="v-val pos" style="color:#A0A0A0;">0</div>
-                    </div>
-                    <div class="v-label-bottom">A2</div>
-                </div>
-                <div class="v-col">
-                    <div class="inner-pos" style="height: 4%;">
-                        <div class="v-bar pos" style="height: 100%;"></div>
-                        <div class="v-val pos">5k</div>
-                    </div>
-                    <div class="v-label-bottom">A3</div>
-                </div>
-                <div class="v-col">
-                    <div class="inner-pos" style="height: 58%;">
-                        <div class="v-bar pos" style="height: 100%;"></div>
-                        <div class="v-val pos">65k</div>
-                    </div>
-                    <div class="v-label-bottom">A4</div>
-                </div>
-                <div class="v-col">
-                    <div class="inner-pos" style="height: 100%;">
-                        <div class="v-bar pos" style="height: 100%;"></div>
-                        <div class="v-val pos">112k</div>
-                    </div>
-                    <div class="v-label-bottom">A5</div>
-                </div>
-            </div>
-        </section>
+            </section>
 
         <!-- SECTION 4 – CONSOLIDÉ GLOBAL -->
         <section class="consolide-block">
