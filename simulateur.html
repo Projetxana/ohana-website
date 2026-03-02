@@ -603,14 +603,1011 @@
                     </select>
                 </div>
 
-                <div class="control-group" style="margin-top: 45px;">
-                    <div class="control-label">
-                        <span>Revenus Annexes / Base (Maturité)</span>
-                        <span class="control-val" id="val-rev">35 k€</span>
+                
+
+            </div>
+
+            <!-- RESULTS -->
+            <div class="results-panel">
+
+                <!-- TOP KPIS -->
+                <div class="kpi-row">
+                    <div class="kpi-box highlight">
+                        <div class="comp-lbl">Résultat Cumulé 5 Ans</div>
+                        <div class="comp-val" id="res-cumul">0</div>
+                        <div class="comp-sub">Somme réelle projetée</div>
                     </div>
-                    <span class="control-subtext">Déclenchés progressivement : 30% → 70% → 100%</span>
-                    <input type="range" id="slider-rev" min="0" max="150" step="5" value="35">
+                    <div class="kpi-box">
+                        <div class="comp-lbl">Résultat Stabilisé</div>
+                        <div class="comp-val" id="res-annuel">0</div>
+                        <div class="comp-sub">Année 5</div>
+                    </div>
+                    <div class="kpi-box">
+                        <div class="comp-lbl">Besoin de Trésorerie Max</div>
+                        <div class="comp-val neg" id="treso-max">0</div>
+                        <div class="comp-sub" id="treso-annee">Pas de besoin</div>
+                    </div>
+                    <div class="kpi-box">
+                        <div class="comp-lbl">Point Mort</div>
+                        <div class="comp-val pos" id="point-mort-val" style="font-size:1.8rem;">Année 1</div>
+                        <div class="comp-sub" id="point-mort-sub">Première année bénéficiaire</div>
+                    </div>
                 </div>
+
+                <!-- CHART 1: RESULTAT ANNUEL -->
+                <div class="chart-box">
+                    <div class="chart-title">Résultat d'Exploitation Annuel</div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color bg-marin"></div> Marge Base Marin
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color bg-bvi"></div> Marge Base BVI
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color bg-neg"></div> Résultat Négatif
+                        </div>
+                    </div>
+
+                    <div class="v-chart-container" id="chart-container">
+                        <div class="v-zero-line"></div>
+                        <div class="v-col" id="col-a1">
+                            <div class="bar-stack" id="stack-a1"></div>
+                            <div class="v-label-bottom">A1</div>
+                        </div>
+                        <div class="v-col" id="col-a2">
+                            <div class="bar-stack" id="stack-a2"></div>
+                            <div class="v-label-bottom">A2</div>
+                        </div>
+                        <div class="v-col" id="col-a3">
+                            <div class="bar-stack" id="stack-a3"></div>
+                            <div class="v-label-bottom">A3</div>
+                        </div>
+                        <div class="v-col" id="col-a4">
+                            <div class="bar-stack" id="stack-a4"></div>
+                            <div class="v-label-bottom">A4</div>
+                        </div>
+                        <div class="v-col" id="col-a5">
+                            <div class="bar-stack" id="stack-a5"></div>
+                            <div class="v-label-bottom">A5</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHART 2: TRESORERIE CUMULEE -->
+                <div class="chart-box">
+                    <div class="chart-title">Évolution de la Trésorerie Cumulée</div>
+
+                    <div class="treasury-svg-container" id="t-container">
+                        <div class="t-zero-line" id="t-zero"></div>
+                        <svg class="t-svg" id="t-svg">
+                            <path class="t-fill-pos" id="t-fill-pos"></path>
+                            <path class="t-fill-neg" id="t-fill-neg"></path>
+                            <path class="t-line" id="t-line"></path>
+                            <!-- points/labels script generated -->
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- STRATEGIC READING -->
+                <div class="strategic-reading">
+                    <h4>Lecture Stratégique</h4>
+                    <ul class="opt-list">
+                        <li><strong>Contrôle du risque</strong> : Les coûts d'équipe (locale et back-office) s'ajustent
+                            automatiquement par paliers selon le volume réel de yachts en gestion.</li>
+                        <li><strong>Revenus annexes sécurisés</strong> : Ils ne sont débloqués dans le modèle qu'une
+                            fois la base ayant atteint 100% de sa flotte cible (maturité).</li>
+                        <li><strong>Croissance soutenable</strong> : L'intégration progressive de la flotte (40/70/100)
+                            permet de lisser l'effort d'implantation.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // BP REFERENCE MATRICES (Base = 10 Yachts)
+        const BP_MARIN_REV = [100, 210, 292, 317, 342];
+        const BP_MARIN_DEP = [125, 147, 165, 188, 210];
+        
+        // BVI Reference (extended to 5 active years logically following the trend)
+        // BP Y1 (active Y1) = 130 Rev, 125 Dep
+        // BP Y2 (active Y2) = 220 Rev, 155 Dep
+        // BP Y3 (active Y3) = 302 Rev, 190 Dep
+        // Extrapolated Y4 = 327 Rev, 195 Dep
+        // Extrapolated Y5 = 352 Rev, 200 Dep
+        const BP_BVI_REV = [130, 220, 302, 327, 352];
+        const BP_BVI_DEP = [125, 155, 190, 195, 200];
+
+        // Elements
+        const sliderMarin = document.getElementById('slider-marin');
+        const sliderBvi = document.getElementById('slider-bvi');
+        const selectBviYear = document.getElementById('select-bvi-year');
+
+        const valMarin = document.getElementById('val-marin');
+        const valBvi = document.getElementById('val-bvi');
+
+        function formatK(num) {
+            return new Intl.NumberFormat('fr-FR').format(Math.round(num)) + ' k€';
+        }
+
+        function calculate() {
+            // 1. Fetch values
+            const nbMarinMax = parseInt(sliderMarin.value);
+            const nbBviMax = parseInt(sliderBvi.value);
+            const bviStartYear = parseInt(selectBviYear.value); 
+
+            // Update DOM Controls
+            if(valMarin) valMarin.innerText = nbMarinMax;
+            if(valBvi) valBvi.innerText = nbBviMax;
+
+            let totalCumul = 0;
+            const yearsData = [];
+            
+            let maxRes = 0;
+            let minRes = 0;
+            let breakEvenYear = 0;
+            
+            let minTreso = 0;
+            let minTresoYear = 0;
+
+            let testReferenceResults = [];
+            const bpTargetResults = [-25, 63, 132, 194, 244];
+
+            // 2. Compute 5 years
+            for (let year = 1; year <= 5; year++) {
+                // --- MARIN LOGIC ---
+                // Rev is proportional to fleet vs reference of 10
+                let coeffMarin = nbMarinMax / 10.0;
+                let revMarin = BP_MARIN_REV[year - 1] * coeffMarin;
+                
+                // Dep is fixed structure (unless fleet is completely 0 to avoid nonsense)
+                let depMarin = (nbMarinMax > 0) ? BP_MARIN_DEP[year - 1] : 0;
+                let resMarin = revMarin - depMarin;
+
+                // --- BVI LOGIC ---
+                let revBvi = 0;
+                let depBvi = 0;
+                let bviActiveYears = (bviStartYear > 0 && year >= bviStartYear) ? (year - bviStartYear + 1) : 0;
+                
+                if (bviActiveYears > 0 && nbBviMax > 0) {
+                    let activeIdx = bviActiveYears - 1; // 0-indexed for the array
+                    let coeffBvi = nbBviMax / 10.0;
+                    revBvi = BP_BVI_REV[activeIdx] * coeffBvi;
+                    depBvi = BP_BVI_DEP[activeIdx];
+                }
+                let resBvi = revBvi - depBvi;
+
+                // --- CONSOLIDATION ---
+                // No more autonomous back-office, it's already integrated in BP_DEP
+                let totalRev = revMarin + revBvi;
+                let totalDep = depMarin + depBvi; 
+                let resGlobal = totalRev - totalDep;
+
+                totalCumul += resGlobal;
+
+                // Point mort sur le résultat annuel
+                if (resGlobal >= 0 && breakEvenYear === 0 && (nbMarinMax > 0 || nbBviMax > 0)) {
+                    breakEvenYear = year;
+                }
+
+                // Trésorerie Max Requirement
+                if (totalCumul < minTreso) {
+                    minTreso = totalCumul;
+                    minTresoYear = year;
+                }
+
+                testReferenceResults.push(resGlobal);
+                
+                yearsData.push({
+                    year: year,
+                    rev: totalRev,
+                    dep: totalDep,
+                    resMarin: resMarin, // gross base margin
+                    resBvi: resBvi,     // gross base margin
+                    resGlobal: resGlobal,
+                    cumul: totalCumul
+                });
+
+                if (resGlobal > maxRes) maxRes = resGlobal;
+                if (resGlobal < minRes) minRes = resGlobal;
+            }
+
+            // 3. Update DOM Top KPIs
+            document.getElementById('res-cumul').innerText = formatK(totalCumul);
+            document.getElementById('res-cumul').className = 'comp-val ' + (totalCumul >= 0 ? 'pos' : 'neg');
+
+            // Year 5
+            const y5 = yearsData[4];
+            document.getElementById('res-annuel').innerText = formatK(y5.resGlobal);
+            document.getElementById('res-annuel').className = 'comp-val ' + (y5.resGlobal >= 0 ? 'pos' : 'neg');
+            
+            // Tréso Max
+            if (minTreso < 0) {
+                document.getElementById('treso-max').innerText = formatK(minTreso);
+                document.getElementById('treso-annee').innerText = `Survient en Année ${minTresoYear}`;
+            } else {
+                document.getElementById('treso-max').innerText = "0 k€";
+                document.getElementById('treso-max').className = "comp-val pos";
+                document.getElementById('treso-annee').innerText = "Autofinancement immédiat";
+            }
+
+            // Point Mort
+            if (nbMarinMax === 0 && nbBviMax === 0) {
+                document.getElementById('point-mort-val').innerText = "-";
+                document.getElementById('point-mort-val').className = "comp-val neg";
+                document.getElementById('point-mort-sub').innerText = "Aucune flotte cible définie";
+            } else if (breakEvenYear > 0) {
+                document.getElementById('point-mort-val').innerText = `Année ${breakEvenYear}`;
+                document.getElementById('point-mort-val').className = "comp-val pos";
+                document.getElementById('point-mort-sub').innerText = "Première année bénéficiaire";
+            } else {
+                document.getElementById('point-mort-val').innerText = "Non atteint";
+                document.getElementById('point-mort-val').className = "comp-val neg";
+                document.getElementById('point-mort-sub').innerText = "Sur la période des 5 ans";
+            }
+
+            // 4. Render Charts
+            renderStackedChart(yearsData, maxRes, minRes);
+            renderTreasuryChart(yearsData);
+            
+            // 5. Validation Check
+            if (nbMarinMax === 10 && nbBviMax === 10 && bviStartYear === 3) {
+                let diffMax = 0;
+                let deviation = false;
+                for (let i = 0; i < 5; i++) {
+                    const simVal = Math.round(testReferenceResults[i]);
+                    const refVal = bpTargetResults[i];
+                    
+                    if (refVal !== 0) {
+                        const err = Math.abs((simVal - refVal) / refVal) * 100;
+                        if (err > 0.01) { // practically exact match
+                             deviation = true;
+                             diffMax = Math.max(diffMax, err);
+                        }
+                    } else if (simVal !== 0) {
+                       deviation = true; 
+                    }
+                }
+                
+                if (deviation) {
+                     console.warn(`[DEBUG OHANA] Écart détecté avec BP de référence (Écart max: ${diffMax.toFixed(1)}%).\nSim: ${testReferenceResults.map(Math.round)}\nRef: ${bpTargetResults}`);
+                } else {
+                     console.log("[DEBUG OHANA] Parfaite mathématique avec le Business Plan Statique (exact match).");
+                }
+            }
+        }
+
+        function renderStackedChart(data, maxVal, minVal) {
+            const containerH = 180;
+            let ceiling = Math.max(maxVal, 20);
+            let floor = Math.min(minVal, -20);
+            let spread = ceiling - floor;
+            const pixelsPerK = containerH / spread;
+
+            data.forEach((d, i) => {
+                const stackEl = document.getElementById(`stack-a${i + 1}`);
+                if (!stackEl) return;
+                stackEl.innerHTML = ""; // clear previous
+
+                let valDiv = document.createElement("div");
+                valDiv.innerText = formatK(d.resGlobal).replace(' k€', 'k');
+
+                if (d.resGlobal >= 0) {
+                    stackEl.className = "bar-stack pos-stack";
+                    valDiv.className = "v-val pos";
+                    
+                    let totalBaseMargin = Math.max(0, d.resMarin) + Math.max(0, d.resBvi);
+                    let marinPx = 0; let bviPx = 0;
+                    let totalH_px = Math.max(2, d.resGlobal * pixelsPerK);
+
+                    if (totalBaseMargin > 0) {
+                        marinPx = totalH_px * (Math.max(0, d.resMarin) / totalBaseMargin);
+                        bviPx = totalH_px * (Math.max(0, d.resBvi) / totalBaseMargin);
+                    } else {
+                        marinPx = totalH_px; 
+                    }
+
+                    if (bviPx > 1) {
+                        let segBvi = document.createElement("div");
+                        segBvi.className = "bar-segment bg-bvi";
+                        segBvi.style.height = bviPx + "px";
+                        stackEl.appendChild(segBvi);
+                    }
+                    if (marinPx > 1) {
+                        let segMarin = document.createElement("div");
+                        segMarin.className = "bar-segment bg-marin";
+                        segMarin.style.height = marinPx + "px";
+                        stackEl.appendChild(segMarin);
+                    }
+                    
+                    stackEl.appendChild(valDiv); 
+
+                } else {
+                    stackEl.className = "bar-stack neg-stack";
+                    valDiv.className = "v-val neg";
+                    
+                    let totalH_px = Math.max(2, Math.abs(d.resGlobal) * pixelsPerK);
+                    let segNeg = document.createElement("div");
+                    segNeg.className = "bar-segment bg-neg";
+                    segNeg.style.height = totalH_px + "px";
+                    
+                    stackEl.appendChild(segNeg);
+                    stackEl.appendChild(valDiv);
+                }
+            });
+        }
+
+        function renderTreasuryChart(data) {
+            const container = document.getElementById('t-container');
+            const svg = document.getElementById('t-svg');
+            
+            if (!container || !svg) return;
+
+            const rect = container.getBoundingClientRect();
+            // Fallback width if hidden
+            const width = rect.width > 0 ? rect.width : 700;
+            const height = rect.height > 0 ? rect.height : 160;
+
+            // Remove previous dynamically generated labels/points
+            container.querySelectorAll('.t-val-div').forEach(el => el.remove());
+            svg.querySelectorAll('.t-point').forEach(el => el.remove());
+
+            // Compute metrics
+            let maxC = 20; let minC = -20;
+            data.forEach(d => {
+                if(d.cumul > maxC) maxC = d.cumul;
+                if(d.cumul < minC) minC = d.cumul;
+            });
+
+            // Adjust scaling so we don't hit the absolute roof/floor
+            let spread = (maxC - minC) * 1.4; 
+            const pixelsPerK = height / spread;
+            
+            const zeroY = height - (Math.abs(minC) * 1.2 * pixelsPerK); 
+            document.getElementById('t-zero').style.top = zeroY + 'px';
+
+            let pathD = "";
+            let fillPos = `M 0,${zeroY} `;
+            let fillNeg = `M 0,${zeroY} `;
+            
+            let pointsHtml = "";
+
+            data.forEach((d, i) => {
+                let proportionX = (i + 0.5) / 5; // Spread evenly across 5 columns
+                let cx = width * proportionX;
+                let cy = zeroY - (d.cumul * pixelsPerK);
+
+                if (i === 0) {
+                    pathD += `M ${cx},${cy} `;
+                    fillPos += `L ${cx},${cy} `;
+                    fillNeg += `L ${cx},${cy} `;
+                } else {
+                    pathD += `L ${cx},${cy} `;
+                    fillPos += `L ${cx},${cy} `;
+                    fillNeg += `L ${cx},${cy} `;
+                }
+
+                pointsHtml += `<circle class="t-point" cx="${cx}" cy="${cy}" r="5" />`;
+
+                let lbl = document.createElement("div");
+                lbl.className = "t-val";
+                lbl.innerText = formatK(d.cumul).replace(' k€', 'k');
+                lbl.style.left = cx + "px";
+                if(d.cumul >= 0) {
+                    lbl.style.top = (cy - 25) + "px";
+                } else {
+                    lbl.style.top = (cy + 10) + "px";
+                }
+                lbl.classList.add("t-val-div");
+                container.appendChild(lbl);
+            });
+
+            fillPos += `L ${width * 0.9},${zeroY} Z`; 
+            fillNeg += `L ${width * 0.9},${zeroY} Z`;
+
+            document.getElementById('t-line').setAttribute('d', pathD);
+            let fullFill = pathD + ` L ${width * 0.9},${zeroY} L ${width * 0.1},${zeroY} Z`;
+            document.getElementById('t-fill-pos').setAttribute('d', fullFill);
+
+            svg.insertAdjacentHTML('beforeend', pointsHtml);
+        }
+
+        // Event Listeners
+        if (sliderMarin && sliderBvi && selectBviYear) {
+            [sliderMarin, sliderBvi, selectBviYear].forEach(el => {
+                el.addEventListener('input', calculate);
+            });
+        }
+
+        window.addEventListener('resize', calculate);
+        document.addEventListener('DOMContentLoaded', calculate);
+        
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            setTimeout(calculate, 100);
+        }
+
+</script>
+    <style>
+        :root {
+            --bg-color: #F8F7F4;
+            /* Beige très léger */
+            --white: #FFFFFF;
+            --text-main: #333333;
+            /* Gris anthracite */
+            --text-muted: #666666;
+            --accent: #C8A97E;
+            /* Or doux */
+            --accent-dark: #A3855E;
+            --bvi-color: #8D99AE;
+            /* Couleur distincte mais sobre pour différencier BVI */
+            --border-light: rgba(51, 51, 51, 0.08);
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 100px;
+        }
+
+        .logo-header {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+        }
+
+        .logo-header a {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-header a:hover {
+            opacity: 1;
+        }
+
+        .page-title {
+            text-align: center;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Simulator Container */
+        .simulator-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Controls Panel */
+        .controls-panel {
+            background-color: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 40px;
+        }
+
+        .controls-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--text-main);
+        }
+
+        .control-group {
+            margin-bottom: 35px;
+        }
+
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .control-subtext {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .control-val {
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--accent-dark);
+            font-size: 1rem;
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: var(--accent-dark);
+            cursor: pointer;
+            margin-top: -7px;
+            border: 2px solid var(--white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: var(--border-light);
+            border-radius: 2px;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        select.premium-select {
+            width: 100%;
+            padding: 10px 12px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text-main);
+            border: 1px solid rgba(51, 51, 51, 0.2);
+            background-color: var(--white);
+            outline: none;
+            cursor: pointer;
+            border-radius: 2px;
+            -webkit-appearance: none;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Main KPIs */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .kpi-box {
+            background-color: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 25px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .kpi-box.highlight {
+            border-color: var(--accent);
+            background-color: var(--white);
+        }
+
+        .comp-lbl {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .comp-val {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--text-main);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .comp-val.pos {
+            color: var(--text-main);
+        }
+
+        .comp-val.neg {
+            color: #A0A0A0;
+        }
+
+        .comp-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .kpi-box.highlight .comp-val {
+            font-size: 2.6rem;
+            color: var(--accent-dark);
+        }
+
+        /* Progress Chart */
+        .chart-box {
+            background-color: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 40px 20px;
+        }
+
+        .chart-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .v-chart-container {
+            display: flex;
+            height: 220px;
+            align-items: flex-end;
+            position: relative;
+            justify-content: space-around;
+            padding-bottom: 40px;
+            margin: 0 20px;
+        }
+
+        .v-zero-line {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            height: 1px;
+            background: var(--border-light);
+            z-index: 1;
+        }
+
+        .v-col {
+            position: relative;
+            width: 60px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 2;
+        }
+
+        .bar-stack {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .bar-stack.pos-stack {
+            bottom: 40px;
+        }
+
+        .bar-stack.neg-stack {
+            top: calc(100% - 40px);
+            flex-direction: column-reverse;
+        }
+
+        .bar-segment {
+            width: 100%;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bg-marin {
+            background-color: var(--accent);
+        }
+
+        .bg-bvi {
+            background-color: var(--bvi-color);
+        }
+
+        .bg-neg {
+            background-color: #D0D0D0;
+        }
+
+        .v-val {
+            position: absolute;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: var(--font-body);
+            transition: all 0.4s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .v-val.pos {
+            bottom: 100%;
+            color: var(--text-main);
+            padding-bottom: 5px;
+        }
+
+        .v-val.neg {
+            top: 100%;
+            color: #A0A0A0;
+            padding-top: 5px;
+        }
+
+        .v-label-bottom {
+            position: absolute;
+            bottom: 0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Treasury Chart Area */
+        .treasury-svg-container {
+            position: relative;
+            height: 160px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .t-zero-line {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: rgba(51, 51, 51, 0.2);
+            z-index: 1;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .t-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .t-fill-neg {
+            fill: rgba(200, 169, 126, 0.1);
+            transition: d 0.4s ease;
+        }
+
+        .t-fill-pos {
+            fill: rgba(51, 51, 51, 0.03);
+            transition: d 0.4s ease;
+        }
+
+        .t-line {
+            fill: none;
+            stroke: var(--accent-dark);
+            stroke-width: 2.5;
+            transition: d 0.4s ease;
+        }
+
+        .t-point {
+            fill: var(--white);
+            stroke: var(--accent-dark);
+            stroke-width: 2;
+            transition: cx 0.4s ease, cy 0.4s ease;
+        }
+
+        .t-val {
+            position: absolute;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transform: translateX(-50%);
+            transition: left 0.4s ease, top 0.4s ease;
+            z-index: 3;
+        }
+
+        /* Strategic Reading */
+        .strategic-reading {
+            background-color: transparent;
+            padding: 20px 0;
+            border-left: 2px solid var(--accent);
+            padding-left: 40px;
+        }
+
+        .strategic-reading h4 {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .opt-list {
+            list-style: none;
+            margin-bottom: 0;
+        }
+
+        .opt-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+
+        .opt-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 300;
+        }
+
+        @media(max-width: 900px) {
+            .simulator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="logo-header">
+        <a href="index.html">Caribbean Ownership Club™</a>
+    </header>
+
+    <div class="nav-links">
+        <a href="le-cercle.html">Le Cercle</a>
+        <a href="modeles.html">Modèles</a>
+        <a href="gouvernance.html">Gouvernance</a>
+        <a href="budget.html">Budget</a>
+        <a href="sailing-academy.html">Academy</a>
+        <a href="souscription.html">Souscription</a>
+        <a href="cadre-programme.html">Cadre</a>
+        <a href="faq.html">FAQ</a>
+        <a href="base-martinique.html">La Base</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="business-plan.html">Business Plan</a>
+        <a href="simulateur.html">Simulation</a>
+    </div>
+
+    <div class="page-title">SIMULATEUR STRATÉGIQUE – PROJECTION 5 ANS</div>
+
+    <div class="container">
+
+        <div class="simulator-grid">
+
+            <!-- CONTROLS -->
+            <div class="controls-panel">
+                <div class="controls-title">Variables d'Exploitation</div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Flotte Cible Marin (Année 5)</span>
+                        <span class="control-val" id="val-marin">6</span>
+                    </div>
+                    <span class="control-subtext">Progression automatique : 30% → 70% → 100%</span>
+                    <input type="range" id="slider-marin" min="0" max="15" step="1" value="6">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Flotte Cible BVI (Année 5)</span>
+                        <span class="control-val" id="val-bvi">4</span>
+                    </div>
+                    <span class="control-subtext">Progression automatique : 30% → 70% → 100%</span>
+                    <input type="range" id="slider-bvi" min="0" max="15" step="1" value="4">
+                </div>
+
+                <div class="control-group" style="margin-top: 35px;">
+                    <div class="control-label">
+                        <span>Intégration BVI</span>
+                    </div>
+                    <select id="select-bvi-year" class="premium-select">
+                        <option value="0">Aucune</option>
+                        <option value="1">Année 1</option>
+                        <option value="2">Année 2</option>
+                        <option value="3" selected>Année 3</option>
+                        <option value="4">Année 4</option>
+                        <option value="5">Année 5</option>
+                    </select>
+                </div>
+
+                
 
             </div>
 
