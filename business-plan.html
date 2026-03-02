@@ -8,17 +8,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FAFAFA;
-            --text-main: #2A2A2A;
-            --text-muted: #666666;
-            --accent: #B2967D;
-            --bg-secondary: #F4F3EF;
+            --bg-color: #F8F7F4;
+            /* Beige très léger */
             --white: #FFFFFF;
-            --blue-deep: #1A365D;
+            --text-main: #333333;
+            /* Gris anthracite */
+            --text-muted: #666666;
+            --accent: #C8A97E;
+            /* Or doux */
+            --accent-dark: #A3855E;
+            --border-light: rgba(51, 51, 51, 0.08);
 
             --font-heading: 'Cormorant Garamond', serif;
             --font-body: 'Montserrat', sans-serif;
@@ -36,343 +39,518 @@
             font-family: var(--font-body);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            padding-bottom: 100px;
         }
 
-        /* Nav */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 5%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            z-index: 1000;
-            background-color: rgba(30, 30, 30, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+        .logo-header {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
         }
 
-        .logo {
+        .logo-header a {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            text-align: center;
-        }
-
-        .logo a {
-            color: var(--white);
+            color: var(--text-main);
             text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 1.2rem;
-            flex-wrap: nowrap;
-            justify-content: center;
-            width: 100%;
+        .logo-header a:hover {
+            opacity: 1;
         }
 
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.65rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Hero Spacer */
-        .nav-spacer {
-            height: 120px;
-            background-color: var(--bg-color);
-        }
-
-        /* BP Section Content */
-        .bp-section {
-            padding: 80px 5%;
-            background-color: var(--bg-color);
-        }
-
-        .bp-section-title {
+        .page-title {
             text-align: center;
             font-family: var(--font-body);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            letter-spacing: 4px;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            margin-bottom: 60px;
-        }
-
-        .bp-card {
-            background-color: var(--white);
-            max-width: 1100px;
-            margin: 0 auto 60px auto;
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.02);
-            padding: 60px 80px;
-        }
-
-        .bp-header {
-            text-align: center;
+            color: var(--text-muted);
             margin-bottom: 50px;
+            font-weight: 500;
         }
 
-        .bp-header h2 {
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section 1 - KPI Horizontal */
+        .kpi-wrapper {
+            background-color: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .kpi-card {
+            padding: 10px 20px;
+            border-right: 1px solid var(--border-light);
+        }
+
+        .kpi-card:last-child {
+            border-right: none;
+        }
+
+        .kpi-val {
             font-family: var(--font-heading);
-            font-size: 2.2rem;
+            font-size: 2.4rem;
+            color: var(--text-main);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .kpi-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .kpi-chart-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--accent-dark);
+            margin: 50px 0 30px 0;
+        }
+
+        /* Horizontal Chart */
+        .h-chart {
+            max-width: 700px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+
+        .h-row {
+            display: grid;
+            grid-template-columns: 80px 100px 1fr 60px;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        .h-label {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+        }
+
+        .h-neg-zone {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 2px;
+            border-right: 1px solid var(--border-light);
+            height: 24px;
+            align-items: center;
+        }
+
+        .h-pos-zone {
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 2px;
+            height: 24px;
+            align-items: center;
+        }
+
+        .h-val {
+            text-align: right;
+            font-family: var(--font-body);
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .bar-h {
+            height: 12px;
+            background-color: var(--accent);
+            opacity: 0.8;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .bar-h.neg {
+            background-color: #A0A0A0;
+            /* Gris sobre */
+            border-radius: 2px 0 0 2px;
+            opacity: 1;
+        }
+
+        .bar-h.highlight {
+            background-color: var(--text-main);
+            /* Gris anthracite pour l'accentuation */
+            opacity: 1;
+        }
+
+        /* Section Tables */
+        .bp-block {
+            background-color: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 60px 80px;
+            margin-bottom: 40px;
+        }
+
+        .bp-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2rem;
             color: var(--text-main);
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .bp-header p {
+        .bp-subtitle {
+            text-align: center;
             font-family: var(--font-heading);
-            font-size: 1.4rem;
-            color: var(--accent);
+            font-size: 1.3rem;
+            color: var(--accent-dark);
             font-style: italic;
             margin-top: 5px;
-        }
-
-        .bp-table-wrapper {
-            overflow-x: auto;
+            margin-bottom: 50px;
         }
 
         .bp-table {
             width: 100%;
-            min-width: 800px;
             border-collapse: collapse;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .bp-table th,
         .bp-table td {
-            padding: 18px 20px;
+            padding: 15px 0;
             text-align: right;
+            width: 11%;
         }
 
         .bp-table th:first-child,
         .bp-table td:first-child {
             text-align: left;
-            width: 35%;
+            width: 34%;
         }
 
         .bp-table th {
             font-weight: 500;
             color: var(--text-muted);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-light);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 0.8rem;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+            padding-bottom: 20px;
         }
 
-        .bp-group-title td {
-            padding-top: 35px;
+        .row-header td {
+            padding-top: 30px;
             padding-bottom: 15px;
             font-family: var(--font-heading);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-main);
             font-style: italic;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            text-align: left !important;
         }
 
-        .bp-row {
+        .row-data {
             color: var(--text-muted);
             font-weight: 300;
         }
 
-        .bp-row td {
+        .row-data td {
             border-bottom: 1px solid rgba(0, 0, 0, 0.02);
         }
 
-        .bp-row:last-of-type td {
+        .row-data:last-of-type td {
             border-bottom: none;
         }
 
-        .bp-subtotal td {
+        .row-data td:first-child {
+            color: var(--text-main);
+        }
+
+        .row-subtotal td {
             font-weight: 500;
             color: var(--text-main);
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .row-result td {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent-dark);
             padding-top: 25px;
             padding-bottom: 25px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-top: 1px solid var(--accent);
             background-color: var(--white);
         }
 
-        .bp-result td {
-            font-weight: 600;
-            font-size: 1.15rem;
-            color: var(--blue-deep);
-            padding-top: 25px;
-            padding-bottom: 25px;
-            border-top: 2px solid var(--accent);
-            background-color: rgba(178, 150, 125, 0.03);
-            border-bottom: 1px solid rgba(178, 150, 125, 0.1);
+        .row-result td:last-child {
+            font-size: 1.2rem;
         }
 
-        .bp-result td:last-child {
-            font-size: 1.25rem;
+        /* Vertical Chart */
+        .v-chart-container {
+            display: flex;
+            height: 220px;
+            align-items: flex-end;
+            padding-bottom: 40px;
+            position: relative;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
         }
 
-        .bp-row td:first-child {
+        .v-zero-line {
+            position: absolute;
+            bottom: 40px;
+            width: 60%;
+            height: 1px;
+            background: var(--border-light);
+            z-index: 1;
+        }
+
+        .v-col {
+            position: relative;
+            width: 35px;
+            display: flex;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .v-bar {
+            position: absolute;
+            width: 100%;
+            background: var(--accent);
+            opacity: 0.8;
+            border-radius: 2px 2px 0 0;
+            transition: all 0.3s;
+        }
+
+        .v-bar.pos {
+            bottom: 40px;
+        }
+
+        .v-bar.neg {
+            top: calc(100% - 40px);
+            background: #A0A0A0;
+            /* Gris sobre */
+            border-radius: 0 0 2px 2px;
+            opacity: 1;
+        }
+
+        .v-val {
+            position: absolute;
+            font-size: 0.75rem;
+            font-weight: 500;
             color: var(--text-main);
+            font-family: var(--font-body);
         }
 
-        /* Consolidé block */
-        .consolidated-box {
-            background-color: var(--bg-secondary);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 70px 60px;
+        .v-val.pos {
+            bottom: calc(100% + 5px);
+            /* Positioned relative to the positive bar via flex layout below */
+        }
+
+        .v-val.neg {
+            top: calc(100% + 5px);
+            /* Positioned relative to the negative bar */
+        }
+
+        .v-label-bottom {
+            position: absolute;
+            bottom: 0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            width: 100%;
             text-align: center;
         }
 
-        .consolidated-box h2 {
-            font-family: var(--font-heading);
-            font-size: 2.2rem;
-            color: var(--text-main);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 60px;
-        }
-
-        .consolidated-grid {
+        /* Specific alignment for v-bars text */
+        .v-col .inner-pos {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
-            max-width: 800px;
-            margin: 0 auto 50px auto;
-            flex-wrap: wrap;
-            gap: 20px;
+            justify-content: center;
+            align-items: flex-start;
         }
 
-        .consolidated-item {
+        .v-col .inner-neg {
+            position: absolute;
+            top: calc(100% - 40px);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        /* Consolidated Simple Block */
+        .consolide-block {
+            background-color: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 60px 80px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .consolide-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .c-item {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            align-items: center;
         }
 
-        .c-year {
-            font-size: 0.85rem;
+        .c-lbl {
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--text-muted);
-            border-bottom: 1px solid var(--accent);
-            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 5px;
         }
 
         .c-val {
             font-family: var(--font-heading);
             font-size: 1.8rem;
             color: var(--text-main);
+            font-style: italic;
         }
 
-        .final-result-block {
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            padding-top: 50px;
+        .c-cumul-block {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-light);
         }
 
-        .final-result-label {
-            font-size: 1.1rem;
+        .c-cumul-label {
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--text-muted);
             margin-bottom: 15px;
         }
 
-        .final-result-val {
+        .c-cumul-val {
             font-family: var(--font-heading);
-            font-size: 5rem;
-            color: var(--blue-deep);
+            font-size: 4.5rem;
+            color: var(--text-main);
             line-height: 1;
         }
 
+        /* Strategic Reading */
         .strategic-reading {
-            max-width: 800px;
-            margin: 80px auto 0 auto;
-            padding: 40px 60px;
-            background-color: var(--white);
-            border-left: 3px solid var(--accent);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
-            text-align: left;
+            background-color: transparent;
+            padding: 40px 0;
+            max-width: 700px;
+            margin: 0 auto;
+            border-left: 2px solid var(--accent);
+            padding-left: 40px;
         }
 
         .strategic-reading h4 {
             font-family: var(--font-body);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--text-main);
             margin-bottom: 25px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        .strategic-list {
+        .opt-list {
             list-style: none;
         }
 
-        .strategic-list li {
+        .opt-list li {
             position: relative;
-            padding-left: 25px;
+            padding-left: 20px;
             margin-bottom: 12px;
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.6;
+            letter-spacing: 0.5px;
         }
 
-        .strategic-list li::before {
-            content: "•";
+        .opt-list li::before {
+            content: "—";
             position: absolute;
             left: 0;
             color: var(--accent);
-            font-size: 1.2rem;
-            top: -2px;
-        }
-
-        footer {
-            padding: 50px 10%;
-            text-align: center;
-            background-color: var(--white);
-            font-size: 0.8rem;
-            color: #999;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-weight: 300;
         }
 
         @media(max-width: 900px) {
+            .kpi-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
 
-            .bp-card,
-            .consolidated-box {
+            .kpi-card {
+                border-right: none;
+                border-bottom: 1px solid var(--border-light);
+                padding-bottom: 20px;
+            }
+
+            .kpi-card:nth-child(3),
+            .kpi-card:nth-child(4) {
+                border-bottom: none;
+            }
+
+            .bp-block,
+            .consolide-block {
                 padding: 40px 20px;
             }
 
-            .consolidated-grid {
-                justify-content: center;
-                gap: 40px;
+            .h-row {
+                grid-template-columns: 70px 60px 1fr 60px;
+            }
+
+            .bp-table-wrapper {
+                overflow-x: auto;
+            }
+
+            .bp-table {
+                min-width: 700px;
+            }
+
+            .consolide-grid {
+                gap: 25px;
             }
 
             .strategic-reading {
-                padding: 40px 30px;
+                padding-left: 20px;
+            }
+        }
+
+        @media(max-width: 500px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
             }
 
-            .final-result-val {
-                font-size: 3.5rem;
-            }
-
-            .nav-links {
-                display: none;
+            .kpi-card {
+                border-bottom: 1px solid var(--border-light);
             }
         }
     </style>
@@ -380,33 +558,85 @@
 
 <body>
 
-    <nav>
-        <div class="logo"><a href="index.html">Caribbean Ownership Club™</a></div>
-        <div class="nav-links">
-            <a href="le-cercle.html">Le Cercle</a>
-            <a href="modeles.html">Modèles</a>
-            <a href="gouvernance.html">Gouvernance</a>
-            <a href="budget.html">Budget</a>
-            <a href="sailing-academy.html">Academy</a>
-            <a href="souscription.html">Souscription</a>
-            <a href="cadre-programme.html">Cadre</a>
-            <a href="faq.html">FAQ</a>
-            <a href="base-martinique.html">La Base</a>
-            <a href="index.html#contact">Contact</a>
-        </div>
-    </nav>
+    <header class="logo-header">
+        <a href="index.html">Caribbean Ownership Club™</a>
+    </header>
 
-    <div class="nav-spacer"></div>
+    <div class="page-title">BUSINESS PLAN – PROJECTION 5 ANS</div>
 
-    <section class="bp-section">
-        <h1 class="bp-section-title">Business Plan – Projection 5 ans</h1>
+    <div class="container">
 
-        <!-- Bloc 1: Base du Marin -->
-        <div class="bp-card">
-            <div class="bp-header">
-                <h2>Base du Marin</h2>
-                <p>Projection d’exploitation – 5 ans</p>
+        <!-- SECTION 1 – INDICATEURS CLÉS -->
+        <section class="kpi-wrapper">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-val">20</div>
+                    <div class="kpi-label">Yachts (Flotte à 5 ans)</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-val">2</div>
+                    <div class="kpi-label">Bases opérationnelles</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-val">244k€</div>
+                    <div class="kpi-label">Résultat annuel stabilisé</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-val">608k€</div>
+                    <div class="kpi-label">Résultat cumulé 5 ans</div>
+                </div>
             </div>
+
+            <div class="kpi-chart-title">Évolution du résultat consolidé</div>
+            <div class="h-chart">
+                <div class="h-row">
+                    <div class="h-label">Année 1</div>
+                    <div class="h-neg-zone">
+                        <div class="bar-h neg" style="width: 10%;"></div>
+                    </div>
+                    <div class="h-pos-zone"></div>
+                    <div class="h-val">-25k</div>
+                </div>
+                <div class="h-row">
+                    <div class="h-label">Année 2</div>
+                    <div class="h-neg-zone"></div>
+                    <div class="h-pos-zone">
+                        <div class="bar-h" style="width: 26%;"></div>
+                    </div>
+                    <div class="h-val">63k</div>
+                </div>
+                <div class="h-row">
+                    <div class="h-label">Année 3</div>
+                    <div class="h-neg-zone"></div>
+                    <div class="h-pos-zone">
+                        <div class="bar-h" style="width: 54%;"></div>
+                    </div>
+                    <div class="h-val">132k</div>
+                </div>
+                <div class="h-row">
+                    <div class="h-label">Année 4</div>
+                    <div class="h-neg-zone"></div>
+                    <div class="h-pos-zone">
+                        <div class="bar-h" style="width: 79%;"></div>
+                    </div>
+                    <div class="h-val">194k</div>
+                </div>
+                <div class="h-row">
+                    <div class="h-label">Année 5</div>
+                    <div class="h-neg-zone"></div>
+                    <!-- 244k = 100% -->
+                    <div class="h-pos-zone">
+                        <div class="bar-h highlight" style="width: 100%;"></div>
+                    </div>
+                    <div class="h-val">244k</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 – BASE DU MARIN -->
+        <section class="bp-block">
+            <h2 class="bp-title">Base du Marin</h2>
+            <p class="bp-subtitle">Projection d’exploitation – 5 ans</p>
 
             <div class="bp-table-wrapper">
                 <table class="bp-table">
@@ -422,10 +652,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bp-group-title">
+                        <tr class="row-header">
                             <td colspan="7">Revenus</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Gestion annuelle yachts</td>
                             <td>80k</td>
                             <td>160k</td>
@@ -434,7 +664,7 @@
                             <td>212k</td>
                             <td>876k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Revenus annexes</td>
                             <td>20k</td>
                             <td>35k</td>
@@ -443,7 +673,7 @@
                             <td>70k</td>
                             <td>235k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Gestion propriétaires individuels</td>
                             <td>0</td>
                             <td>15k</td>
@@ -452,7 +682,7 @@
                             <td>60k</td>
                             <td>150k</td>
                         </tr>
-                        <tr class="bp-subtotal">
+                        <tr class="row-subtotal">
                             <td>Total revenus marin</td>
                             <td>100k</td>
                             <td>210k</td>
@@ -462,10 +692,10 @@
                             <td>1 261k</td>
                         </tr>
 
-                        <tr class="bp-group-title">
-                            <td colspan="7" style="border-top: 20px solid transparent;">Dépenses</td>
+                        <tr class="row-header">
+                            <td colspan="7">Dépenses</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Équipe locale</td>
                             <td>55k</td>
                             <td>65k</td>
@@ -474,7 +704,7 @@
                             <td>80k</td>
                             <td>345k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Part back-office mutualisé</td>
                             <td>25k</td>
                             <td>35k</td>
@@ -483,7 +713,7 @@
                             <td>50k</td>
                             <td>195k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Marketing & salons</td>
                             <td>25k</td>
                             <td>20k</td>
@@ -492,7 +722,7 @@
                             <td>30k</td>
                             <td>120k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Assurance RC / outils</td>
                             <td>10k</td>
                             <td>12k</td>
@@ -501,7 +731,7 @@
                             <td>20k</td>
                             <td>75k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Divers & imprévus</td>
                             <td>10k</td>
                             <td>15k</td>
@@ -510,7 +740,7 @@
                             <td>30k</td>
                             <td>100k</td>
                         </tr>
-                        <tr class="bp-subtotal">
+                        <tr class="row-subtotal">
                             <td>Total dépenses marin</td>
                             <td>125k</td>
                             <td>147k</td>
@@ -520,9 +750,9 @@
                             <td>835k</td>
                         </tr>
 
-                        <tr class="bp-result">
+                        <tr class="row-result">
                             <td>Résultat</td>
-                            <td>-25k</td>
+                            <td style="color: #A0A0A0;">-25k</td>
                             <td>63k</td>
                             <td>127k</td>
                             <td>129k</td>
@@ -532,14 +762,54 @@
                     </tbody>
                 </table>
             </div>
-        </div>
 
-        <!-- Bloc 2: Base BVI -->
-        <div class="bp-card">
-            <div class="bp-header">
-                <h2>Base BVI</h2>
-                <p>Projection d’exploitation – 5 ans</p>
+            <!-- Vertical Chart Marin -->
+            <!-- Max height 100px for 132k setup -->
+            <div class="v-chart-container">
+                <div class="v-zero-line"></div>
+
+                <div class="v-col">
+                    <div class="inner-neg" style="height: 19%;">
+                        <div class="v-bar neg" style="height: 100%;"></div>
+                        <div class="v-val neg">-25k</div>
+                    </div>
+                    <div class="v-label-bottom">A1</div>
+                </div>
+                <div class="v-col">
+                    <div class="inner-pos" style="height: 47%;">
+                        <div class="v-bar pos" style="height: 100%;"></div>
+                        <div class="v-val pos">63k</div>
+                    </div>
+                    <div class="v-label-bottom">A2</div>
+                </div>
+                <div class="v-col">
+                    <div class="inner-pos" style="height: 96%;">
+                        <div class="v-bar pos" style="height: 100%;"></div>
+                        <div class="v-val pos">127k</div>
+                    </div>
+                    <div class="v-label-bottom">A3</div>
+                </div>
+                <div class="v-col">
+                    <div class="inner-pos" style="height: 98%;">
+                        <div class="v-bar pos" style="height: 100%;"></div>
+                        <div class="v-val pos">129k</div>
+                    </div>
+                    <div class="v-label-bottom">A4</div>
+                </div>
+                <div class="v-col">
+                    <div class="inner-pos" style="height: 100%;">
+                        <div class="v-bar pos" style="height: 100%;"></div>
+                        <div class="v-val pos">132k</div>
+                    </div>
+                    <div class="v-label-bottom">A5</div>
+                </div>
             </div>
+        </section>
+
+        <!-- SECTION 3 – BASE BVI -->
+        <section class="bp-block">
+            <h2 class="bp-title">Base BVI</h2>
+            <p class="bp-subtitle">Projection d’exploitation – 5 ans</p>
 
             <div class="bp-table-wrapper">
                 <table class="bp-table">
@@ -555,10 +825,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bp-group-title">
+                        <tr class="row-header">
                             <td colspan="7">Revenus</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Gestion annuelle yachts</td>
                             <td>0</td>
                             <td>0</td>
@@ -567,7 +837,7 @@
                             <td>212k</td>
                             <td>472k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Revenus annexes</td>
                             <td>0</td>
                             <td>0</td>
@@ -576,7 +846,7 @@
                             <td>50k</td>
                             <td>105k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Gestion propriétaires individuels</td>
                             <td>0</td>
                             <td>0</td>
@@ -585,7 +855,7 @@
                             <td>40k</td>
                             <td>75k</td>
                         </tr>
-                        <tr class="bp-subtotal">
+                        <tr class="row-subtotal">
                             <td>Total revenus BVI</td>
                             <td>0</td>
                             <td>0</td>
@@ -595,10 +865,10 @@
                             <td>652k</td>
                         </tr>
 
-                        <tr class="bp-group-title">
-                            <td colspan="7" style="border-top: 20px solid transparent;">Dépenses</td>
+                        <tr class="row-header">
+                            <td colspan="7">Dépenses</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Équipe locale</td>
                             <td>0</td>
                             <td>0</td>
@@ -607,7 +877,7 @@
                             <td>80k</td>
                             <td>195k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Part back-office mutualisé</td>
                             <td>0</td>
                             <td>0</td>
@@ -616,7 +886,7 @@
                             <td>40k</td>
                             <td>90k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Marketing & implantation</td>
                             <td>0</td>
                             <td>0</td>
@@ -625,7 +895,7 @@
                             <td>25k</td>
                             <td>80k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Assurance / outils</td>
                             <td>0</td>
                             <td>0</td>
@@ -634,7 +904,7 @@
                             <td>20k</td>
                             <td>45k</td>
                         </tr>
-                        <tr class="bp-row">
+                        <tr class="row-data">
                             <td>Divers & imprévus</td>
                             <td>0</td>
                             <td>0</td>
@@ -643,7 +913,7 @@
                             <td>25k</td>
                             <td>60k</td>
                         </tr>
-                        <tr class="bp-subtotal">
+                        <tr class="row-subtotal">
                             <td>Total dépenses BVI</td>
                             <td>0</td>
                             <td>0</td>
@@ -653,10 +923,10 @@
                             <td>470k</td>
                         </tr>
 
-                        <tr class="bp-result">
+                        <tr class="row-result">
                             <td>Résultat</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td style="color: #A0A0A0;">0</td>
+                            <td style="color: #A0A0A0;">0</td>
                             <td>5k</td>
                             <td>65k</td>
                             <td>112k</td>
@@ -665,56 +935,96 @@
                     </tbody>
                 </table>
             </div>
-        </div>
 
-        <!-- Bloc 3: Consolidated -->
-        <div class="consolidated-box">
-            <h2>Consolidé Global Marin / BVI</h2>
+            <!-- Vertical Chart BVI -->
+            <!-- Max height 100px for 112k setup -->
+            <div class="v-chart-container">
+                <div class="v-zero-line"></div>
 
-            <div class="consolidated-grid">
-                <div class="consolidated-item">
-                    <span class="c-year">Année 1</span>
-                    <span class="c-val">-25k</span>
+                <div class="v-col">
+                    <div class="inner-pos" style="height: 0%;">
+                        <div class="v-bar pos" style="height: 100%;"></div>
+                        <div class="v-val pos" style="color:#A0A0A0;">0</div>
+                    </div>
+                    <div class="v-label-bottom">A1</div>
                 </div>
-                <div class="consolidated-item">
-                    <span class="c-year">Année 2</span>
-                    <span class="c-val">63k</span>
+                <div class="v-col">
+                    <div class="inner-pos" style="height: 0%;">
+                        <div class="v-bar pos" style="height: 100%;"></div>
+                        <div class="v-val pos" style="color:#A0A0A0;">0</div>
+                    </div>
+                    <div class="v-label-bottom">A2</div>
                 </div>
-                <div class="consolidated-item">
-                    <span class="c-year">Année 3</span>
-                    <span class="c-val">132k</span>
+                <div class="v-col">
+                    <div class="inner-pos" style="height: 4%;">
+                        <div class="v-bar pos" style="height: 100%;"></div>
+                        <div class="v-val pos">5k</div>
+                    </div>
+                    <div class="v-label-bottom">A3</div>
                 </div>
-                <div class="consolidated-item">
-                    <span class="c-year">Année 4</span>
-                    <span class="c-val">194k</span>
+                <div class="v-col">
+                    <div class="inner-pos" style="height: 58%;">
+                        <div class="v-bar pos" style="height: 100%;"></div>
+                        <div class="v-val pos">65k</div>
+                    </div>
+                    <div class="v-label-bottom">A4</div>
                 </div>
-                <div class="consolidated-item">
-                    <span class="c-year">Année 5</span>
-                    <span class="c-val">244k</span>
+                <div class="v-col">
+                    <div class="inner-pos" style="height: 100%;">
+                        <div class="v-bar pos" style="height: 100%;"></div>
+                        <div class="v-val pos">112k</div>
+                    </div>
+                    <div class="v-label-bottom">A5</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 – CONSOLIDÉ GLOBAL -->
+        <section class="consolide-block">
+            <h2 class="bp-title" style="margin-bottom: 30px;">Consolidé Global Marin / BVI</h2>
+
+            <div class="consolide-grid">
+                <div class="c-item">
+                    <div class="c-lbl">Année 1</div>
+                    <div class="c-val" style="color: #A0A0A0;">-25k</div>
+                </div>
+                <div class="c-item">
+                    <div class="c-lbl">Année 2</div>
+                    <div class="c-val">63k</div>
+                </div>
+                <div class="c-item">
+                    <div class="c-lbl">Année 3</div>
+                    <div class="c-val">132k</div>
+                </div>
+                <div class="c-item">
+                    <div class="c-lbl">Année 4</div>
+                    <div class="c-val">194k</div>
+                </div>
+                <div class="c-item">
+                    <div class="c-lbl">Année 5</div>
+                    <div class="c-val">244k</div>
                 </div>
             </div>
 
-            <div class="final-result-block">
-                <div class="final-result-label">Résultat cumulé 5 ans</div>
-                <div class="final-result-val">608k €</div>
+            <div class="c-cumul-block">
+                <div class="c-cumul-label">Résultat cumulé 5 ans</div>
+                <div class="c-cumul-val">608k €</div>
             </div>
+        </section>
 
-            <div class="strategic-reading">
-                <h4>Lecture stratégique :</h4>
-                <ul class="strategic-list">
-                    <li>Point mort atteint entre 6 et 8 yachts</li>
-                    <li>Mutualisation des coûts à partir de l’année 3</li>
-                    <li>Double base opérationnelle stabilisée en année 4</li>
-                    <li>Modèle centre de profits solide</li>
-                    <li>Absence de risque d’inventaire (vente 100 % parts avant commande)</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        <!-- SECTION 5 – LECTURE STRATÉGIQUE -->
+        <section class="strategic-reading">
+            <h4>Lecture stratégique</h4>
+            <ul class="opt-list">
+                <li>Point mort atteint entre 6 et 8 yachts</li>
+                <li>Mutualisation des coûts à partir de l’année 3</li>
+                <li>Double base stabilisée à partir de l’année 4</li>
+                <li>Croissance progressive sans risque d’inventaire</li>
+                <li>Modèle centre de profits durable</li>
+            </ul>
+        </section>
 
-    <footer>
-        &copy; 2026 Caribbean Ownership Club™. Tous droits réservés.
-    </footer>
+    </div>
 
 </body>
 
