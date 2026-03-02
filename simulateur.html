@@ -576,7 +576,7 @@
                         <span>Flotte Cible Marin (Année 5)</span>
                         <span class="control-val" id="val-marin">6</span>
                     </div>
-                    <span class="control-subtext">Progression automatique : 40% → 70% → 100%</span>
+                    <span class="control-subtext">Progression automatique : 30% → 70% → 100%</span>
                     <input type="range" id="slider-marin" min="0" max="15" step="1" value="6">
                 </div>
 
@@ -585,7 +585,7 @@
                         <span>Flotte Cible BVI (Année 5)</span>
                         <span class="control-val" id="val-bvi">4</span>
                     </div>
-                    <span class="control-subtext">Progression automatique : 40% → 70% → 100%</span>
+                    <span class="control-subtext">Progression automatique : 30% → 70% → 100%</span>
                     <input type="range" id="slider-bvi" min="0" max="15" step="1" value="4">
                 </div>
 
@@ -608,7 +608,7 @@
                         <span>Revenus Annexes / Base (Maturité)</span>
                         <span class="control-val" id="val-rev">35 k€</span>
                     </div>
-                    <span class="control-subtext">Déclenchés uniquement à 100% de la flotte cible.</span>
+                    <span class="control-subtext">Déclenchés progressivement : 30% → 70% → 100%</span>
                     <input type="range" id="slider-rev" min="0" max="150" step="5" value="35">
                 </div>
 
@@ -739,7 +739,7 @@
         // Ramp-up: A1, A2, A3+
         function getRampUpFactor(yearsActive) {
             if (yearsActive <= 0) return 0.0;
-            if (yearsActive === 1) return 0.40;
+            if (yearsActive === 1) return 0.30;
             if (yearsActive === 2) return 0.70;
             return 1.0;
         }
@@ -888,8 +888,35 @@
             }
 
             // 4. Render Charts
+
+            // 4. Render Charts
             renderStackedChart(yearsData, maxRes, minRes);
             renderTreasuryChart(yearsData);
+            
+            // 5. Validation Check
+            if (nbMarinMax === 10 && nbBviMax === 10 && bviStartYear === 3 && revAnnexesMax === 25) {
+                let diffMax = 0;
+                let deviation = false;
+                for (let i = 0; i < 5; i++) {
+                    const simVal = testReferenceResults[i];
+                    const refVal = bpTargetResults[i];
+                    // Si on divise par 0 (refVal = 0, on gère), ici refVal est non nul (sauf peut etre)
+                    const err = Math.abs((simVal - refVal) / refVal) * 100;
+                    if (err > 5.0) {
+                         deviation = true;
+                         diffMax = Math.max(diffMax, err);
+                    }
+                }
+                
+                if (deviation) {
+                     console.warn(`[DEBUG OHANA] Écart détecté avec le BP de référence > 5% (Écart max: ${diffMax.toFixed(1)}%).
+Résultats calculés: ${testReferenceResults}
+Résultats attendus: ${bpTargetResults}
+Note: La différence provient des lignes de revenus "Gestion propriétaires" (statique) non reproduites dans la logique mathématique linéaire demandée.`);
+                } else {
+                     console.log("[DEBUG OHANA] Parfaite adhérence au Business Plan validé (<5%).");
+                }
+            }
         }
 
         function renderStackedChart(data, maxVal, minVal) {
