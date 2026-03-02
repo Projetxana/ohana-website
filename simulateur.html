@@ -98,7 +98,7 @@
             padding: 0 20px;
         }
 
-        
+
         .nav-links {
             display: flex;
             justify-content: center;
@@ -109,16 +109,17 @@
             letter-spacing: 2px;
             margin-bottom: 30px;
         }
-        
+
         .nav-links a {
             color: var(--text-main);
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
+
         .nav-links a:hover {
             color: var(--accent);
         }
+
         /* Simulator Container */
         .simulator-grid {
             display: grid;
@@ -733,303 +734,304 @@
             if (totalYachts <= 10) return 45; // Mutualisation standard
             return 65; // Back-office renforc  }
 
-        // Ramp-up: A1, A2, A3+
-        function getRampUpFactor(yearsActive) {
-            if (yearsActive <= 0) return 0.0;
-            if (yearsActive === 1) return 0.40;
-            if (yearsActive === 2) return 0.70;
-            return 1.0;
-        }
+            // Ramp-up: A1, A2, A3+
+            function getRampUpFactor(yearsActive) {
+                if (yearsActive <= 0) return 0.0;
+                if (yearsActive === 1) return 0.40;
+                if (yearsActive === 2) return 0.70;
+                return 1.0;
+            }
 
-        // Elements
-        const sliderMarin = document.getElementById('slider-marin');
-        const sliderBvi = document.getElementById('slider-bvi');
-        const selectBviYear = document.getElementById('select-bvi-year');
-        const sliderRev = document.getElementById('slider-rev');
+            // Elements
+            const sliderMarin = document.getElementById('slider-marin');
+            const sliderBvi = document.getElementById('slider-bvi');
+            const selectBviYear = document.getElementById('select-bvi-year');
+            const sliderRev = document.getElementById('slider-rev');
 
-        const valMarin = document.getElementById('val-marin');
-        const valBvi = document.getElementById('val-bvi');
-        const valRev = document.getElementById('val-rev');
+            const valMarin = document.getElementById('val-marin');
+            const valBvi = document.getElementById('val-bvi');
+            const valRev = document.getElementById('val-rev');
 
-        function formatK(num) {
-            return new Intl.NumberFormat('fr-FR').format(Math.round(num)) + ' k€';
-        }
+            function formatK(num) {
+                return new Intl.NumberFormat('fr-FR').format(Math.round(num)) + ' k€';
+            }
 
-        function calculate() {
-            // 1. Fetch values
-            const nbMarinMax = parseInt(sliderMa            const nbBviMax = parseInt(sliderBvi.value);
-            const bviStartYear = parseInt(selectBviYear.value); 
-            const revAnnexesMax = parseInt(sliderRev.value);
+            function calculate() {
+                // 1. Fetch values
+                const nbMarinMax = parseInt(sliderMa            const nbBviMax = parseInt(sliderBvi.value);
+                const bviStartYear = parseInt(selectBviYear.value);
+                const revAnnexesMax = parseInt(sliderRev.value);
 
-            // Update DOM Controls
-            valMarin.innerText = nbMarinMax;
-            valBvi.innerText = nbBviMax;
-            valRev.innerText = revAnnexesMax + ' k€';
+                // Update DOM Controls
+                valMarin.innerText = nbMarinMax;
+                valBvi.innerText = nbBviMax;
+                valRev.innerText = revAnnexesMax + ' k€';
 
-            let totalCumul = 0;
-            const yearsData = [];
-            
-            let maxRes = 0;
-            let minRes = 0;
-            let breakEvenYear = 0;
-            
-            let minTreso = 0;
-            let minTresoYear = 0;
+                let totalCumul = 0;
+                const yearsData = [];
 
-            let tresoPoints = []; // to store cumul curve
+                let maxRes = 0;
+                let minRes = 0;
+                let breakEvenYear = 0;
 
-            // 2. Compute 5 years
-            for (let year = 1; year <= 5; year++) {
-                // --- MARIN LOGIC ---
-                let marinRamp = getRampUpFactor(year);
-                let currentMarinYachts = Math.round(nbMarp);
-                
-                // Revenus Annexes triggés à 100% seulement
-                let marinRevAnx = (marinRamp === 1.0 && currentMarinYachts > 0) ? revAnnexesMax : 0;
-                let revMarin = currentMarinYachts > 0 ?chts * REV_GESTION_YACHT) + marinRevAnx : 0;
-                
-                let eqMarin = getEquipeLocale(currentMarinYachts);
-                let depMarin = currentMarinYachts > 0 ? (eqMarin + FRAIS_MARKETING + FRAIS_DIVERS) : 0;
-                let resMarin = revMarin - depMarin;
+                let minTreso = 0;
+                let minTresoYear = 0;
 
-                // --- BVI LOGIC ---
-                let resBvi = 0;
-                let revBvi = 0;
-                let depBvi = 0;
-                chts = 0;
+                let tresoPoints = []; // to store cumul curve
 
-                let bviActiveYears = (bviStartYear > 0 && year >= bviStartYear) ? (year - bviStartYear + 1) : 0;
+                // 2. Compute 5 years
+                for (let year = 1; year <= 5; year++) {
+                    // --- MARIN LOGIC ---
+                    let marinRamp = getRampUpFactor(year);
+                    let currentMarinYachts = Math.round(nbMarp);
+
+                    // Revenus Annexes triggés à 100% seulement
+                    let marinRevAnx = (marinRamp === 1.0 && currentMarinYachts > 0) ? revAnnexesMax : 0;
+                    let revMarin = currentMarinYachts > 0 ? chts * REV_GESTION_YACHT) + marinRevAnx : 0;
+
+                    let eqMarin = getEquipeLocale(currentMarinYachts);
+                    let depMarin = currentMarinYachts > 0 ? (eqMarin + FRAIS_MARKETING + FRAIS_DIVERS) : 0;
+                    let resMarin = revMarin - depMarin;
+
+                    // --- BVI LOGIC ---
+                    let resBvi = 0;
+                    let revBvi = 0;
+                    let depBvi = 0;
+                    chts = 0;
+
+                    let bviActiveYears = (bviStartYear > 0 && year >= bviStartYear) ? (year - bviStartYear + 1) : 0;
                 
                > 0 && nbBviMax > 0) {
-                    let bviRamp = getRampUpFactor(bviActiveYears);
-                    currentBviYachts = Math.round(nbBviMax * bviRamp);
-                    
-                    let bviRevAnx = (bviRamp === 1.0 && currentBviYachts > 0) ? revAnnexesMax : 0;
-                    revBvi = (currentBviYachts * REV_GESTION_YACHT) + bviRevAnx;
-                    
-                    let eqBvi = getEquipeLocale(currentBviYachts);
-                    depBvi = eqBvi + FRAIS_MARKETING + FRAIS_DIVERS;
-                    resBvi = revBvi - depBvi;
+                        let bviRamp = getRampUpFactor(bviActiveYears);
+                        currentBviYachts = Math.round(nbBviMax * bviRamp);
+
+                        let bviRevAnx = (bviRamp === 1.0 && currentBviYachts > 0) ? revAnnexesMax : 0;
+                        revBvi = (currentBviYachts * REV_GESTION_YACHT) + bviRevAnx;
+
+                        let eqBvi = getEquipeLocale(currentBviYachts);
+                        depBvi = eqBvi + FRAIS_MARKETING + FRAIS_DIVERS;
+                        resBvi = revBvi - depBvi;
+                    }
+
+                    // --- BACK-OFFICE MUTUALISÉ ---
+                    tsCurrent = curretMarinYachts + currentBviYachts;
+                    let boCost = getBackOffice(totalYachtsCurrent);
+
+                    // --- CONSOLIDATION ---
+                    let totalRev = revMarin + revBvi;
+                    let totalDep = depMari + depBvi + boCost;
+                    let resGlobal = totalRev - totalDep;
+
+                    totalCumul += resGlobal;
+
+                    // Point mort sur le résultat annuel
+                    if (resGlobal >= 0 && breakEvenYear === 0 && (currentMarinYachts > 0 || currentBviYachts > 0)) {
+                        breakEvenYear = year;
+                    }
+
+                    // Trésorerie Max Requirement
+                    if (totalCumul < minTreso) {
+                        minTreso = totalCumul;
+                        minTresoYear = year;
+                    }
+
+                    yearsData.push({
+                        year: year,
+                        rev: totalRev,
+                        dep: totalDep,
+                        resMarin: resMarin, // gross base margin
+                        resBvi: resBvi,     // gross base margin
+                        resGlobal: resGlobal,
+                        boCost: boCost,
+                        cumul: totalCumul
+                    });
+
+                    if (resGlobal > maxRes) maxRes = resGlobal;
+                    if (resGlobal < minRes) minRes = resGlobal;
                 }
 
-                // --- BACK-OFFICE MUTUALISÉ ---
-                            tsCurrent = curretMarinYachts + currentBviYachts;
-                let boCost = getBackOffice(totalYachtsCurrent);
+                // 3. Update DOM Top KPIs
+                document.getElementById('res-cumul').innerText = formatK(totalCumul);
+                document.getElementById('res-cumul').className = 'comp-val ' + (totalCumul >= 0 ? 'pos' : 'neg');
 
-                // --- CONSOLIDATION ---
-                let totalRev = revMarin + revBvi;
-                let totalDep = depMari + depBvi + boCost; 
-                let resGlobal = totalRev - totalDep;
+                // Year 5
+                const y5 = yearsData[4];
+                document.get'res-annuel').innerText = formatK(y5.resGlobal);
+                document.getElementById('res-annuel').className = 'comp-val ' + (y5.resGlobal >= 0 ? 'pos' : 'neg');
 
-                totalCumul += resGlobal;
-
-                // Point mort sur le résultat annuel
-                if (resGlobal >= 0 && breakEvenYear === 0 && (currentMarinYachts > 0 || currentBviYachts > 0)) {
-                    breakEvenYear = year;
+                // Tréso Max
+                if (minTreso < 0) {
+                    document.getElementById('treso-max').innerText = formatK(minTreso);
+                    document.getElementById('treso-annee').innerText = `Survient en Année ${minTresoYear}`;
+                } else {
+                    document.getElementById('treso-max').innerText = "0 k€";
+                    document.getElementById('treso-max').className = "comp-val pos";
+                    document.getElementById('treso-annee').innerText = "Autofinancement immédiat";
                 }
 
-                // Trésorerie Max Requirement
-                if (totalCumul < minTreso) {
-                    minTreso = totalCumul;
-                    minTresoYear = year;
+                // Point Mort
+                if (nbMarinMax === 0 && nbBviMax === 0) {
+                    document.getElementById('point-mort-val').innerText = "-";
+                    document.getElementById('point-mort-val').className = "comp-val neg";
+                    document.getElementById('point-mort-sub').innerText = "Aucune flotte cible définie";
+                } else if (breakEvenYear > 0) {
+                    document.getElementById('point-mort-val').innerText = `Année ${breakEvenYear}`;
+                    cument.getElementById('point-mort-val').className = "comp-val pos";
+                    document.getElementById('point-mort-sub').innerText = "Première année bénéficiaire";
+                } else {
+                    document.getElementById('point-mort-val').innerText = "Non atteint";
+                    document.getElementById('point-mort-val').className = "comp-val neg";
+                    nt.getElementById('point-mort-sub').innerText = "Sur la période des 5 ans";
                 }
 
-                yearsData.push({
-                    year: year,
-                    rev: totalRev,
-                    dep: totalDep,
-                    resMarin: resMarin, // gross base margin
-                    resBvi: resBvi,     // gross base margin
-                    resGlobal: resGlobal,
-                    boCost: boCost,
-                    cumul: totalCumul
+                // 4. Render Charts
+                renderStackedChart(yearsData, maxRes, minRes);
+                renderTreasuryChart(yearsData);
+            }
+
+            function renderStackedChart(data, maxVal, minVal) {
+                const containerH = 180;
+                let ceiling = Math.max(maxVal, 20);
+                let floor = Math.min(minVal, -20);
+                let spread = ceiling - floor;
+                const pixelsPerK = containerH / spread;
+
+                data.forEach((d, i) => {
+                    const stackEl = document.getElementById(`stack-a${i + 1}`);
+                    stackEl.innerHTML = ""; // clear previous
+
+                    let valDiv = document.createElement("div");
+                    valDiv.innerText = formatK(d.resGlobal).replace(' k€', 'k');
+
+                    if (d.resGlobal >= 0) {
+                        stackEl.className = "bar-stack pos-stack";
+                        v - val pos";
+
+                        let totalBaseMargin = Math.max(0, d.resMarin) + Math.max(0, d.resBvi);
+                        let marinPx = 0; let bviPx = 0;
+                        let totalH_px = Math.max(2, d.resGlobal * pixelsPerK);
+
+                        if (totalBaseMargin > 0) {
+                            marinPx = totalH_px * (Math.max(0, d.resMarin) / totalBaseMargin);
+                            bviPx = totalH_px * (Math.max(0, d.resBvi) / totalBaseMargin);
+                            marinPx = totalH_px;
+                        }
+
+                        if (bviPx > 1) {
+                            let segBvi = document.createElement("div");
+                            segBvi.className = "bar-segment bg-bvi";
+                            segBvi.style.height = bviPx + "px";
+                            stackEl.appendChild(segBvi);
+                        }
+                        if (marinPx > 1) {
+                            let segMarin = document.createElement("div");
+                            segMarin.className = "bar-segment bg-marin";
+                            segMarin.style.height = marinPx + "px";
+                            stackEl.appendChild(segMarin);
+                        }
+
+                        stackEl.appendChild(valDiv);
+
+                    } else {
+                        stackEl.className = "bar-stack neg-stack";
+                        valDiv.className = "v-val neg";
+
+                        let totalH_px = Math.max(2, Math.abs(d.resGlobal) * pixelsPerK);
+                        let segNeg = document.createElement("div");
+                        segNeg.className = "bar-segment bg-neg";
+                        segNeg.style.height = totalH_px + "px";
+
+                        stackEl.appendChild(segNeg);
+                        stackEl.appendChild(valDiv);
+                    }
+                });
+            }
+
+            function renderTreasuryChart(data) {
+                const container = document.getElementById('t-container');
+                const svg = document.getElementById(  
+            const rect = container.getBoundingClientRect();
+                const width = rect.width;
+                const height = rect.height;
+
+                // Remove previous dynamically generated labels/points
+                container.querySelectorAll('.t-val-div').forEach(el => el.remove())erySelectorAll('.t-point').forEach(el => el.remove());
+
+                // Compute metrics
+                let maxC = 20; let minC = -20;
+                data.forEach(d => {
+                    if (d.cumul > maxC) maxC = d.cumul;
+                    if (d.cumul < minC) minC = d.cumul;
+                    // Adjust scaling so we don't hit the absolute roof/floor
+                    let spread = (maxC - minC) * 1.4;
+                    const pixelsPerK = height / spread;
+
+                    // Positioning the zero line
+                    // If minC is -100, the zero line is 100 * phe bottom.
+                    const zeroY = height - (Math.abs(minC) * 1.2 * pixelsPerK); // 1.2 adds some padding bottom
+                    document.getElementById('t-zero').style.top = zero + 'px';
+
+                    let pathD = "";
+                    let fillPos = `M 0,${zeroY} `;
+                    let fillNeg = `M 0,${zeroY} `;
+
+                    let pointsHtml = "";
+
+                    data.forEach((d, i) => {
+                        let proportionX = (i + 0.5) / 5; // Spread evenly across 5 columns
+                        let cx = width * proportionX;
+                        let cy = zeroY - (d.cumul * pixelsPerK);
+
+                        if (i === 0) {
+                            pathD += `M ${cx},${cy} `;
+                            fillPos += `L ${cx},${cy} `;
+                            fillNeg += `L ${cx},${cy} `;
+                        } else {
+                            pathD += `L ${cx},${cy} `;
+                            fillPos += `L ${cx},${cy} `;
+                            fillNeg += `L ${cx},${cy} `;
+                        }
+
+                        pointsHtml += `<circle class="t-point" cx="${cx}" cy="${cy}" r="5" />`;
+
+                        // HTML Label
+                        let lbl = document.createElement("div");
+                        lbl.className = "t-val";
+                        lbl.innerText = formatK(d.cumul).replace(' k€', 'k');
+                        // Adjust label position above/below point
+                        lbl.style.left = cx + "px";
+                        if (d.cumul >= 0) {
+                            lbl.style.top = (cy - 25) + "px";
+                        } else {
+                            lbl.style.top = (cy + 10) + "px";
+                        }
+                        lbl.classList.add("t-val-div");
+                        container.appendChild(lbl);
+                    });
+
+                    // Close fills
+                    fillPos += `L ${width * 0.9},${zeroY} Z`; // approximate end
+                    fillNeg += `L ${width * 0.9},${zeroY} Z`;
+
+                    document.getElementById('t-line').setAttribute('d', pathD);
+                    // Simplistic fill approximations (a proper split takes more math, but area clipping is enough for viz)
+                    // We use simple polygons to just shade underneath the curve.
+                    let fullFill = pathD + ` L ${width * 0.9},${zeroY} L ${width * 0.1},${zeroY} Z`;
+                    document.getElementById('t-fill-pos').setAttribute('d', fullFill);
+
+                    svg.insertAdjacentHTML('beforeend', pointsHtml);
+                }
+
+        // Event Listeners
+        [sliderMarin, sliderBvi, selectBviYear, sliderRev].forEach(el => {
+                    el.addEventListener('input', calculate);
                 });
 
-                if (resGlobal > maxRes) maxRes = resGlobal;
-                if (resGlobal < minRes) minRes = resGlobal;
-            }
+                // Handle resize for Chart SVG coordinate re-calculation
+                window.addEventListener('resize', calculate);
 
-            // 3. Update DOM Top KPIs
-            document.getElementById('res-cumul').innerText = formatK(totalCumul);
-            document.getElementById('res-cumul').className = 'comp-val ' + (totalCumul >= 0 ? 'pos' : 'neg');
-
-            // Year 5
-            const y5 = yearsData[4];
-            document.get'res-annuel').innerText = formatK(y5.resGlobal);
-            document.getElementById('res-annuel').className = 'comp-val ' + (y5.resGlobal >= 0 ? 'pos' : 'neg');
-            
-            // Tréso Max
-            if (minTreso < 0) {
-                document.getElementById('treso-max').innerText = formatK(minTreso);
-                document.getElementById('treso-annee').innerText = `Survient en Année ${minTresoYear}`;
-            } else {
-                document.getElementById('treso-max').innerText = "0 k€";
-                document.getElementById('treso-max').className = "comp-val pos";
-                document.getElementById('treso-annee').innerText = "Autofinancement immédiat";
-            }
-
-            // Point Mort
-            if (nbMarinMax === 0 && nbBviMax === 0) {
-                document.getElementById('point-mort-val').innerText = "-";
-                document.getElementById('point-mort-val').className = "comp-val neg";
-                document.getElementById('point-mort-sub').innerText = "Aucune flotte cible définie";
-            } else if (breakEvenYear > 0) {
-                document.getElementById('point-mort-val').innerText = `Année ${breakEvenYear}`;
-      cument.getElementById('point-mort-val').className = "comp-val pos";
-                document.getElementById('point-mort-sub').innerText = "Première année bénéficiaire";
-            } else {
-                document.getElementById('point-mort-val').innerText = "Non atteint";
-                document.getElementById('point-mort-val').className = "comp-val neg";
-          nt.getElementById('point-mort-sub').innerText = "Sur la période des 5 ans";
-            }
-
-            // 4. Render Charts
-            renderStackedChart(yearsData, maxRes, minRes);
-            renderTreasuryChart(yearsData);
-        }
-
-        function renderStackedChart(data, maxVal, minVal) {
-            const containerH = 180;
-            let ceiling = Math.max(maxVal, 20);
-            let floor = Math.min(minVal, -20);
-            let spread = ceiling - floor;
-            const pixelsPerK = containerH / spread;
-
-            data.forEach((d, i) => {
-                const stackEl = document.getElementById(`stack-a${i + 1}`);
-                stackEl.innerHTML = ""; // clear previous
-
-                let valDiv = document.createElement("div");
-                valDiv.innerText = formatK(d.resGlobal).replace(' k€', 'k');
-
-                if (d.resGlobal >= 0) {
-                    stackEl.className = "bar-stack pos-stack";
-                    v-val pos";
-                    
-                    let totalBaseMargin = Math.max(0, d.resMarin) + Math.max(0, d.resBvi);
-                    let marinPx = 0; let bviPx = 0;
-                    let totalH_px = Math.max(2, d.resGlobal * pixelsPerK);
-
-                    if (totalBaseMargin > 0) {
-                        marinPx = totalH_px * (Math.max(0, d.resMarin) / totalBaseMargin);
-                        bviPx = totalH_px * (Math.max(0, d.resBvi) / totalBaseMargin);
-                                 marinPx = totalH_px; 
-                    }
-
-                    if (bviPx > 1) {
-                        let segBvi = document.createElement("div");
-                        segBvi.className = "bar-segment bg-bvi";
-                        segBvi.style.height = bviPx + "px";
-                        stackEl.appendChild(segBvi);
-                    }
-                    if (marinPx > 1) {
-                        let segMarin = document.createElement("div");
-                        segMarin.className = "bar-segment bg-marin";
-                        segMarin.style.height = marinPx + "px";
-                        stackEl.appendChild(segMarin);
-                   }
-                    
-                    stackEl.appendChild(valDiv); 
-
-                } else {
-                    stackEl.className = "bar-stack neg-stack";
-                    valDiv.className = "v-val neg";
-                    
-                    let totalH_px = Math.max(2, Math.abs(d.resGlobal) * pixelsPerK);
-                    let segNeg = document.createElement("div");
-                    segNeg.className = "bar-segment bg-neg";
-                    segNeg.style.height = totalH_px + "px";
-                    
-                    stackEl.appendChild(segNeg);
-                    stackEl.appendChild(valDiv);
-                }
-            });
-        }
-
-        function renderTreasuryChart(data) {
-            const container = document.getElementById('t-container');
-            const svg = document.getElementById(  
-            const rect = container.getBoundingClientRect();
-            const width = rect.width;
-            const height = rect.height;
-
-            // Remove previous dynamically generated labels/points
-            container.querySelectorAll('.t-val-div').forEach(el => el.remove())erySelectorAll('.t-point').forEach(el => el.remove());
-
-            // Compute metrics
-            let maxC = 20; let minC = -20;
-            data.forEach(d => {
-                if(d.cumul > maxC) maxC = d.cumul;
-                if(d.cumul < minC) minC = d.cumul;
-         // Adjust scaling so we don't hit the absolute roof/floor
-            let spread = (maxC - minC) * 1.4; 
-            const pixelsPerK = height / spread;
-            
-            // Positioning the zero line
-            // If minC is -100, the zero line is 100 * phe bottom.
-            const zeroY = height - (Math.abs(minC) * 1.2 * pixelsPerK); // 1.2 adds some padding bottom
-            document.getElementById('t-zero').style.top = zero + 'px';
-
-            let pathD = "";
-            let fillPos = `M 0,${zeroY} `;
-            let fillNeg = `M 0,${zeroY} `;
-            
-            let pointsHtml = "";
-
-            data.forEach((d, i) => {
-                let proportionX = (i + 0.5) / 5; // Spread evenly across 5 columns
-                let cx = width * proportionX;
-                let cy = zeroY - (d.cumul * pixelsPerK);
-
-                if (i === 0) {
-                    pathD += `M ${cx},${cy} `;
-                    fillPos += `L ${cx},${cy} `;
-                    fillNeg += `L ${cx},${cy} `;
-                } else {
-                    pathD += `L ${cx},${cy} `;
-                    fillPos += `L ${cx},${cy} `;
-                    fillNeg += `L ${cx},${cy} `;
-                }
-
-                pointsHtml += `<circle class="t-point" cx="${cx}" cy="${cy}" r="5" />`;
-
-                // HTML Label
-                let lbl = document.createElement("div");
-                lbl.className = "t-val";
-                lbl.innerText = formatK(d.cumul).replace(' k€', 'k');
-                // Adjust label position above/below point
-                lbl.style.left = cx + "px";
-                if(d.cumul >= 0) {
-                    lbl.style.top = (cy - 25) + "px";
-                } else {
-                    lbl.style.top = (cy + 10) + "px";
-                }
-                lbl.classList.add("t-val-div");
-                container.appendChild(lbl);
-            });
-
-            // Close fills
-            fillPos += `L ${width * 0.9},${zeroY} Z`; // approximate end
-            fillNeg += `L ${width * 0.9},${zeroY} Z`;
-
-            document.getElementById('t-line').setAttribute('d', pathD);
-            // Simplistic fill approximations (a proper split takes more math, but area clipping is enough for viz)
-            // We use simple polygons to just shade underneath the curve.
-            let fullFill = pathD + ` L ${width * 0.9},${zeroY} L ${width * 0.1},${zeroY} Z`;
-            document.getElementById('t-fill-pos').setAttribute('d', fullFill);
-
-            svg.insertAdjacentHTML('beforeend', pointsHtml);
-        }
-
-        // Event Listene   iderMarin, sliderBvi, selectBviYear, sliderRev].forEach(el => {
-            el.addEventListener('input', calculate);
-        });
-
-        // Handle resize for Chart SVG coordinate re-calculation
-        window.addEventListener('resize', calculate);
-
-        // Init
-        calculate();
+                // Init
+                calculate();
 
     </script>
 </body>
