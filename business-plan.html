@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Plan - Caribbean Ownership Club™</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --text-main: #2A2A2A;
+            --text-muted: #666666;
+            --accent: #B2967D;
+            --bg-secondary: #F4F3EF;
+            --white: #FFFFFF;
+            --blue-deep: #1A365D;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            background-color: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: nowrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Spacer */
+        .nav-spacer {
+            height: 120px;
+            background-color: var(--bg-color);
+        }
+
+        /* BP Section Content */
+        .bp-section {
+            padding: 80px 5%;
+            background-color: var(--bg-color);
+        }
+
+        .bp-section-title {
+            text-align: center;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+        }
+
+        .bp-card {
+            background-color: var(--white);
+            max-width: 1100px;
+            margin: 0 auto 60px auto;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.02);
+            padding: 60px 80px;
+        }
+
+        .bp-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .bp-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--text-main);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .bp-header p {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--accent);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .bp-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .bp-table {
+            width: 100%;
+            min-width: 800px;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .bp-table th,
+        .bp-table td {
+            padding: 18px 20px;
+            text-align: right;
+        }
+
+        .bp-table th:first-child,
+        .bp-table td:first-child {
+            text-align: left;
+            width: 35%;
+        }
+
+        .bp-table th {
+            font-weight: 500;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+        }
+
+        .bp-group-title td {
+            padding-top: 35px;
+            padding-bottom: 15px;
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--text-main);
+            font-style: italic;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .bp-row {
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .bp-row td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .bp-row:last-of-type td {
+            border-bottom: none;
+        }
+
+        .bp-subtotal td {
+            font-weight: 500;
+            color: var(--text-main);
+            padding-top: 25px;
+            padding-bottom: 25px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            background-color: var(--white);
+        }
+
+        .bp-result td {
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--blue-deep);
+            padding-top: 25px;
+            padding-bottom: 25px;
+            border-top: 2px solid var(--accent);
+            background-color: rgba(178, 150, 125, 0.03);
+            border-bottom: 1px solid rgba(178, 150, 125, 0.1);
+        }
+
+        .bp-result td:last-child {
+            font-size: 1.25rem;
+        }
+
+        .bp-row td:first-child {
+            color: var(--text-main);
+        }
+
+        /* Consolidé block */
+        .consolidated-box {
+            background-color: var(--bg-secondary);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 70px 60px;
+            text-align: center;
+        }
+
+        .consolidated-box h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--text-main);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+        }
+
+        .consolidated-grid {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .consolidated-item {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .c-year {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .c-val {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--text-main);
+        }
+
+        .final-result-block {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 50px;
+        }
+
+        .final-result-label {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .final-result-val {
+            font-family: var(--font-heading);
+            font-size: 5rem;
+            color: var(--blue-deep);
+            line-height: 1;
+        }
+
+        .strategic-reading {
+            max-width: 800px;
+            margin: 80px auto 0 auto;
+            padding: 40px 60px;
+            background-color: var(--white);
+            border-left: 3px solid var(--accent);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+            text-align: left;
+        }
+
+        .strategic-reading h4 {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .strategic-list {
+            list-style: none;
+        }
+
+        .strategic-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .strategic-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            background-color: var(--white);
+            font-size: 0.8rem;
+            color: #999;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media(max-width: 900px) {
+
+            .bp-card,
+            .consolidated-box {
+                padding: 40px 20px;
+            }
+
+            .consolidated-grid {
+                justify-content: center;
+                gap: 40px;
+            }
+
+            .strategic-reading {
+                padding: 40px 30px;
+            }
+
+            .final-result-val {
+                font-size: 3.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html">Caribbean Ownership Club™</a></div>
+        <div class="nav-links">
+            <a href="le-cercle.html">Le Cercle</a>
+            <a href="modeles.html">Modèles</a>
+            <a href="gouvernance.html">Gouvernance</a>
+            <a href="budget.html">Budget</a>
+            <a href="sailing-academy.html">Academy</a>
+            <a href="souscription.html">Souscription</a>
+            <a href="cadre-programme.html">Cadre</a>
+            <a href="faq.html">FAQ</a>
+            <a href="base-martinique.html">La Base</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="nav-spacer"></div>
+
+    <section class="bp-section">
+        <h1 class="bp-section-title">Business Plan – Projection 5 ans</h1>
+
+        <!-- Bloc 1: Base du Marin -->
+        <div class="bp-card">
+            <div class="bp-header">
+                <h2>Base du Marin</h2>
+                <p>Projection d’exploitation – 5 ans</p>
+            </div>
+
+            <div class="bp-table-wrapper">
+                <table class="bp-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Année 1</th>
+                            <th>Année 2</th>
+                            <th>Année 3</th>
+                            <th>Année 4</th>
+                            <th>Année 5</th>
+                            <th>Total 5 ans</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bp-group-title">
+                            <td colspan="7">Revenus</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Gestion annuelle yachts</td>
+                            <td>80k</td>
+                            <td>160k</td>
+                            <td>212k</td>
+                            <td>212k</td>
+                            <td>212k</td>
+                            <td>876k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Revenus annexes</td>
+                            <td>20k</td>
+                            <td>35k</td>
+                            <td>50k</td>
+                            <td>60k</td>
+                            <td>70k</td>
+                            <td>235k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Gestion propriétaires individuels</td>
+                            <td>0</td>
+                            <td>15k</td>
+                            <td>30k</td>
+                            <td>45k</td>
+                            <td>60k</td>
+                            <td>150k</td>
+                        </tr>
+                        <tr class="bp-subtotal">
+                            <td>Total revenus marin</td>
+                            <td>100k</td>
+                            <td>210k</td>
+                            <td>292k</td>
+                            <td>317k</td>
+                            <td>342k</td>
+                            <td>1 261k</td>
+                        </tr>
+
+                        <tr class="bp-group-title">
+                            <td colspan="7" style="border-top: 20px solid transparent;">Dépenses</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Équipe locale</td>
+                            <td>55k</td>
+                            <td>65k</td>
+                            <td>70k</td>
+                            <td>75k</td>
+                            <td>80k</td>
+                            <td>345k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Part back-office mutualisé</td>
+                            <td>25k</td>
+                            <td>35k</td>
+                            <td>40k</td>
+                            <td>45k</td>
+                            <td>50k</td>
+                            <td>195k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Marketing & salons</td>
+                            <td>25k</td>
+                            <td>20k</td>
+                            <td>20k</td>
+                            <td>25k</td>
+                            <td>30k</td>
+                            <td>120k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Assurance RC / outils</td>
+                            <td>10k</td>
+                            <td>12k</td>
+                            <td>15k</td>
+                            <td>18k</td>
+                            <td>20k</td>
+                            <td>75k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Divers & imprévus</td>
+                            <td>10k</td>
+                            <td>15k</td>
+                            <td>20k</td>
+                            <td>25k</td>
+                            <td>30k</td>
+                            <td>100k</td>
+                        </tr>
+                        <tr class="bp-subtotal">
+                            <td>Total dépenses marin</td>
+                            <td>125k</td>
+                            <td>147k</td>
+                            <td>165k</td>
+                            <td>188k</td>
+                            <td>210k</td>
+                            <td>835k</td>
+                        </tr>
+
+                        <tr class="bp-result">
+                            <td>Résultat</td>
+                            <td>-25k</td>
+                            <td>63k</td>
+                            <td>127k</td>
+                            <td>129k</td>
+                            <td>132k</td>
+                            <td>426k</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bloc 2: Base BVI -->
+        <div class="bp-card">
+            <div class="bp-header">
+                <h2>Base BVI</h2>
+                <p>Projection d’exploitation – 5 ans</p>
+            </div>
+
+            <div class="bp-table-wrapper">
+                <table class="bp-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Année 1</th>
+                            <th>Année 2</th>
+                            <th>Année 3</th>
+                            <th>Année 4</th>
+                            <th>Année 5</th>
+                            <th>Total 5 ans</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bp-group-title">
+                            <td colspan="7">Revenus</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Gestion annuelle yachts</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>100k</td>
+                            <td>160k</td>
+                            <td>212k</td>
+                            <td>472k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Revenus annexes</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>20k</td>
+                            <td>35k</td>
+                            <td>50k</td>
+                            <td>105k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Gestion propriétaires individuels</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>10k</td>
+                            <td>25k</td>
+                            <td>40k</td>
+                            <td>75k</td>
+                        </tr>
+                        <tr class="bp-subtotal">
+                            <td>Total revenus BVI</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>130k</td>
+                            <td>220k</td>
+                            <td>302k</td>
+                            <td>652k</td>
+                        </tr>
+
+                        <tr class="bp-group-title">
+                            <td colspan="7" style="border-top: 20px solid transparent;">Dépenses</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Équipe locale</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>50k</td>
+                            <td>65k</td>
+                            <td>80k</td>
+                            <td>195k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Part back-office mutualisé</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>20k</td>
+                            <td>30k</td>
+                            <td>40k</td>
+                            <td>90k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Marketing & implantation</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>30k</td>
+                            <td>25k</td>
+                            <td>25k</td>
+                            <td>80k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Assurance / outils</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>10k</td>
+                            <td>15k</td>
+                            <td>20k</td>
+                            <td>45k</td>
+                        </tr>
+                        <tr class="bp-row">
+                            <td>Divers & imprévus</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>15k</td>
+                            <td>20k</td>
+                            <td>25k</td>
+                            <td>60k</td>
+                        </tr>
+                        <tr class="bp-subtotal">
+                            <td>Total dépenses BVI</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>125k</td>
+                            <td>155k</td>
+                            <td>190k</td>
+                            <td>470k</td>
+                        </tr>
+
+                        <tr class="bp-result">
+                            <td>Résultat</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>5k</td>
+                            <td>65k</td>
+                            <td>112k</td>
+                            <td>182k</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bloc 3: Consolidated -->
+        <div class="consolidated-box">
+            <h2>Consolidé Global Marin / BVI</h2>
+
+            <div class="consolidated-grid">
+                <div class="consolidated-item">
+                    <span class="c-year">Année 1</span>
+                    <span class="c-val">-25k</span>
+                </div>
+                <div class="consolidated-item">
+                    <span class="c-year">Année 2</span>
+                    <span class="c-val">63k</span>
+                </div>
+                <div class="consolidated-item">
+                    <span class="c-year">Année 3</span>
+                    <span class="c-val">132k</span>
+                </div>
+                <div class="consolidated-item">
+                    <span class="c-year">Année 4</span>
+                    <span class="c-val">194k</span>
+                </div>
+                <div class="consolidated-item">
+                    <span class="c-year">Année 5</span>
+                    <span class="c-val">244k</span>
+                </div>
+            </div>
+
+            <div class="final-result-block">
+                <div class="final-result-label">Résultat cumulé 5 ans</div>
+                <div class="final-result-val">608k €</div>
+            </div>
+
+            <div class="strategic-reading">
+                <h4>Lecture stratégique :</h4>
+                <ul class="strategic-list">
+                    <li>Point mort atteint entre 6 et 8 yachts</li>
+                    <li>Mutualisation des coûts à partir de l’année 3</li>
+                    <li>Double base opérationnelle stabilisée en année 4</li>
+                    <li>Modèle centre de profits solide</li>
+                    <li>Absence de risque d’inventaire (vente 100 % parts avant commande)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Caribbean Ownership Club™. Tous droits réservés.
+    </footer>
+
+</body>
+
+</html>
